@@ -1,0 +1,20 @@
+*.class
+
+cookies.txt
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+#Build targets
+target/
+/target
+*/target
+
+.idea/
+*.class
+*.iml
+.classpath
+.project
+.settings/
