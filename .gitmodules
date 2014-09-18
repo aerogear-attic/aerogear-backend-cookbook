@@ -1,0 +1,6 @@
+[submodule "AeroDoc"]
+	path = AeroDoc
+	url = https://github.com/aerogear/aerogear-aerodoc-backend.git
+[submodule "PushQuickstarts"]
+	path = PushQuickstarts
+	url = https://github.com/aerogear/aerogear-push-quickstarts.git
