@@ -66,6 +66,11 @@
                 "/shoot/*"
             ],
             "webOrigins": []
+        },
+        {
+            "name": "shoot-upload",
+            "enabled": true,
+            "bearerOnly": true
         }
     ],
     "applicationScopeMappings": {
