@@ -17,7 +17,7 @@
     },
     "users" : [
         {
-            "username" : "test-user@localhost",
+            "username" : "user",
             "enabled": true,
             "email" : "test-user@localhost",
             "credentials" : [
