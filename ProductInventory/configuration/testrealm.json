@@ -26,16 +26,16 @@
             ],
             "realmRoles": ["user"],
             "applicationRoles": {
+                "test-app": [ "customer-user" ],
                 "account": [ "view-profile", "manage-account" ]
             }
         }
     ],
     "oauthClients" : [
         {
-            "name" : "product-inventory",
+            "name" : "product-inventory-oauth2",
             "enabled": true,
             "redirectUris": [
-                "http://localhost:8081/app/*",
                 "org.aerogear.KeycloakDemo://oauth2Callback"
             ],
             "secret": "password",
@@ -44,11 +44,21 @@
     ],
     "scopeMappings": [
         {
-            "client": "product-inventory",
+            "client": "product-inventory-oauth2",
+            "roles": ["user"]
+        },
+        {
+            "client": "test-app",
             "roles": ["user"]
         }
     ],
-
+    "applications": [
+        {
+            "name": "test-app",
+            "enabled": true,
+            "bearerOnly": true
+         }
+    ],
     "roles" : {
         "realm" : [
             {
@@ -59,7 +69,28 @@
                 "name": "admin",
                 "description": "Have Administrator privileges"
             }
-        ]
+        ],
+        "application" : {
+            "test-app" : [
+                {
+                    "name": "customer-user",
+                    "description": "Have Customer User privileges"
+                },
+                {
+                    "name": "customer-admin",
+                    "description": "Have Customer Admin privileges"
+                }
+            ]
+        }
 
+    },
+
+    "applicationScopeMappings": {
+        "test-app": [
+            {
+                "client": "product-inventory-oauth2",
+                "roles": ["customer-user"]
+            }
+        ]
     }
 }
