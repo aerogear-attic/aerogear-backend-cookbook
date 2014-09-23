@@ -26,7 +26,6 @@
             ],
             "realmRoles": ["user"],
             "applicationRoles": {
-                "test-app": [ "customer-user" ],
                 "account": [ "view-profile", "manage-account" ]
             }
         }
@@ -47,24 +46,9 @@
         {
             "client": "product-inventory",
             "roles": ["user"]
-        },
-        {
-            "client": "test-app",
-            "roles": ["user"]
         }
     ],
-    "applications": [
-        {
-            "name": "test-app",
-            "enabled": true,
-            "baseUrl": "http://localhost:8081/app",
-            "redirectUris": [
-                "http://localhost:8081/app/*"
-            ],
-            "adminUrl": "http://localhost:8081/app/logout",
-            "secret": "password"
-         }
-    ],
+
     "roles" : {
         "realm" : [
             {
@@ -75,28 +59,7 @@
                 "name": "admin",
                 "description": "Have Administrator privileges"
             }
-        ],
-        "application" : {
-            "test-app" : [
-                {
-                    "name": "customer-user",
-                    "description": "Have Customer User privileges"
-                },
-                {
-                    "name": "customer-admin",
-                    "description": "Have Customer Admin privileges"
-                }
-            ]
-        }
-
-    },
-
-    "applicationScopeMappings": {
-        "test-app": [
-            {
-                "client": "product-inventory",
-                "roles": ["customer-user"]
-            }
         ]
+
     }
 }
