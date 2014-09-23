@@ -56,7 +56,7 @@ public class ProductService {
 
         return products;
     }
-    private static final String SERVER_UPLOAD_LOCATION_FOLDER = "/Users/corinne/aerogear/keycloak/aerogear-backend-cookbook/Shoot-oauth2/";
+    private static final String SERVER_UPLOAD_LOCATION_FOLDER = "/Users/corinne/aerogear/keycloak/aerogear-backend-cookbook/Shoot/";
 
     @GET
     @Path("/{name}")
