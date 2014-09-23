@@ -4,5 +4,5 @@
     "auth-server-url": "/auth",
     "ssl-required": "external",
     "resource": "test-app",
-    "public-client": true
+    "bearer-only": true
 }
