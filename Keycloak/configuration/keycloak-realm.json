@@ -41,41 +41,16 @@
 
     "applications" : [ {
         "name" : "keycloakapp-services",
-        "surrogateAuthRequired" : false,
         "enabled" : true,
-        "secret" : "8a63ad1f-534a-4aef-8316-559155804255",
-        "redirectUris" : [ ],
-        "webOrigins" : [ ],
-        "notBefore" : 0,
         "bearerOnly" : true,
-        "publicClient" : false,
-        "fullScopeAllowed" : true
+        "publicClient" : false
     },  {
         "name" : "keycloakapp-web",
         "baseUrl" : "/keycloak/index.html",
-        "surrogateAuthRequired" : false,
         "enabled" : true,
-        "secret" : "bfc35164-119c-4a60-9b6b-fae249548f2d",
         "redirectUris" : [ "/keycloak/*" ],
-        "webOrigins" : [ ],
-        "notBefore" : 0,
-        "bearerOnly" : false,
-        "publicClient" : true,
-        "fullScopeAllowed" : true
-    }, {
-        "name" : "account",
-        "baseUrl" : "/auth/realms/keycloak/account",
-        "surrogateAuthRequired" : false,
-        "enabled" : true,
-        "secret" : "6316283f-09f8-4552-a596-972ce16562cc",
-        "defaultRoles" : [ "view-profile", "manage-account" ],
-        "redirectUris" : [ "/auth/realms/keycloak/account/*" ],
-        "webOrigins" : [ ],
-        "notBefore" : 0,
-        "bearerOnly" : false,
-        "publicClient" : false,
-        "fullScopeAllowed" : false
-    } ],
+        "publicClient" : true
+    }],
     "oauthClients" : [ {
         "name" : "third-party",
         "redirectUris" : [ "org.aerogear.KeycloakDemo://oauth2Callback" ],
