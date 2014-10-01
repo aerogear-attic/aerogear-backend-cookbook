@@ -1,0 +1,8 @@
+{
+    "realm": "keycloak",
+    "realm-public-key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCUgrGF7rNIYRSWCZlT+JXGtjZtnn8/ZObzW12YSoRBUJ0mm6wzO6p8+aQYMXvtvB88zeWBD9+uZh8gWj+iOqByWCfX0Wez+mVK8ofhAsGniv631u+wmDESLrLvROX12r1fzmmVJYWOzEGW4v2Xmahl/6gHnzV0mHZfmJXEOniHqwIDAQAB",
+    "auth-server-url": "/auth",
+    "ssl-required": "external",
+    "resource": "shoot-web",
+    "public-client": true
+}
