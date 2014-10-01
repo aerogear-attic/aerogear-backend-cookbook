@@ -43,7 +43,7 @@
         "name" : "keycloakapp-services",
         "enabled" : true,
         "bearerOnly" : true,
-        "publicClient" : false
+        "publicClient" : true
     },  {
         "name" : "keycloakapp-web",
         "baseUrl" : "/keycloak/index.html",
