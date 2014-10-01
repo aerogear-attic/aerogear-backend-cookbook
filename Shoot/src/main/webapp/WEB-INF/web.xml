@@ -17,7 +17,7 @@
 
     <login-config>
         <auth-method>KEYCLOAK</auth-method>
-        <realm-name>keycloak</realm-name>
+        <realm-name>shoot-realm</realm-name>
     </login-config>
 
     <security-role>

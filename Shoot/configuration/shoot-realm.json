@@ -1,5 +1,5 @@
 {
-    "realm" : "keycloak",
+    "realm" : "shoot-realm",
     "enabled" : true,
     "sslRequired" : "external",
     "privateKey" : "MIICXAIBAAKBgQCUgrGF7rNIYRSWCZlT+JXGtjZtnn8/ZObzW12YSoRBUJ0mm6wzO6p8+aQYMXvtvB88zeWBD9+uZh8gWj+iOqByWCfX0Wez+mVK8ofhAsGniv631u+wmDESLrLvROX12r1fzmmVJYWOzEGW4v2Xmahl/6gHnzV0mHZfmJXEOniHqwIDAQABAoGAef9m79woASRm8d4Oy/FgsK2Mxr42UBCGvJFosKs+PB2KC2ZEro2sPyAgkhNMd/5bNur5Ru2QVcbkeQJKVe2NUTjEBhnm32QJrQBVGNLgvIv3Dozu24f2y5BhZHU0VYGnps0iYGYTa9ZZPgEjN0D3Fw3HkvFfxi3jL8PgHW4b10ECQQD0nJGGq1lhFca+sEKzXYgjV3gXA9bTY+FcdIFDwZ6va54vf9Of5lkSVJbqlVRMixN4cZrVegBYAM2P30raZd+hAkEAm2y7tbdLB/dRmUg/L0DmURBR4/Ld8c/LQtl192ZWfAqEoggXRe7brOa1DBoReftimxOOopDdZx3OrOqQkc9TywJAI2uwnwGc9bQDjYVUg0id+BAocZy6tO2Xqp2sQjV9VwWMaHBoIpVmfIMHP3zUMilJbn104EjEV/n1ykmZOzrZQQJAAiHMtWJtSg+vc93U2A4Y2rXRmcHkH4QNMr6O6rThrNPsG9jmkNQE+Ws0wpS89qJnKN9szngUQWzcP+z7zLQ+XwJBAN9HA4vx3/am9mFW3NGL8/qoNWJmxIMNw9aazZrmZAuV4e9Dkmx0bB2FMfruMv3a7WqGgLvWLbI6WBc+u6rJ2Fk=",
