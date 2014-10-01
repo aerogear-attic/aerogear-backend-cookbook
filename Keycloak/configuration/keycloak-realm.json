@@ -1,282 +1,86 @@
 {
-  "id" : "34f17137-1174-4a9c-9101-7773d32cec0d",
-  "realm" : "keycloak",
-  "notBefore" : 0,
-  "accessTokenLifespan" : 300,
-  "ssoSessionIdleTimeout" : 600,
-  "ssoSessionMaxLifespan" : 36000,
-  "accessCodeLifespan" : 60,
-  "accessCodeLifespanUserAction" : 300,
-  "enabled" : true,
-  "sslRequired" : "external",
-  "passwordCredentialGrantAllowed" : false,
-  "registrationAllowed" : false,
-  "rememberMe" : false,
-  "verifyEmail" : false,
-  "resetPasswordAllowed" : false,
-  "social" : false,
-  "updateProfileOnInitialSocialLogin" : false,
-  "bruteForceProtected" : false,
-  "maxFailureWaitSeconds" : 900,
-  "minimumQuickLoginWaitSeconds" : 60,
-  "waitIncrementSeconds" : 60,
-  "quickLoginCheckMilliSeconds" : 1000,
-  "maxDeltaTimeSeconds" : 43200,
-  "failureFactor" : 30,
-  "privateKey" : "MIICXAIBAAKBgQCUgrGF7rNIYRSWCZlT+JXGtjZtnn8/ZObzW12YSoRBUJ0mm6wzO6p8+aQYMXvtvB88zeWBD9+uZh8gWj+iOqByWCfX0Wez+mVK8ofhAsGniv631u+wmDESLrLvROX12r1fzmmVJYWOzEGW4v2Xmahl/6gHnzV0mHZfmJXEOniHqwIDAQABAoGAef9m79woASRm8d4Oy/FgsK2Mxr42UBCGvJFosKs+PB2KC2ZEro2sPyAgkhNMd/5bNur5Ru2QVcbkeQJKVe2NUTjEBhnm32QJrQBVGNLgvIv3Dozu24f2y5BhZHU0VYGnps0iYGYTa9ZZPgEjN0D3Fw3HkvFfxi3jL8PgHW4b10ECQQD0nJGGq1lhFca+sEKzXYgjV3gXA9bTY+FcdIFDwZ6va54vf9Of5lkSVJbqlVRMixN4cZrVegBYAM2P30raZd+hAkEAm2y7tbdLB/dRmUg/L0DmURBR4/Ld8c/LQtl192ZWfAqEoggXRe7brOa1DBoReftimxOOopDdZx3OrOqQkc9TywJAI2uwnwGc9bQDjYVUg0id+BAocZy6tO2Xqp2sQjV9VwWMaHBoIpVmfIMHP3zUMilJbn104EjEV/n1ykmZOzrZQQJAAiHMtWJtSg+vc93U2A4Y2rXRmcHkH4QNMr6O6rThrNPsG9jmkNQE+Ws0wpS89qJnKN9szngUQWzcP+z7zLQ+XwJBAN9HA4vx3/am9mFW3NGL8/qoNWJmxIMNw9aazZrmZAuV4e9Dkmx0bB2FMfruMv3a7WqGgLvWLbI6WBc+u6rJ2Fk=",
-  "publicKey" : "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCUgrGF7rNIYRSWCZlT+JXGtjZtnn8/ZObzW12YSoRBUJ0mm6wzO6p8+aQYMXvtvB88zeWBD9+uZh8gWj+iOqByWCfX0Wez+mVK8ofhAsGniv631u+wmDESLrLvROX12r1fzmmVJYWOzEGW4v2Xmahl/6gHnzV0mHZfmJXEOniHqwIDAQAB",
-  "roles" : {
-    "realm" : [ {
-      "id" : "1b461215-8ac2-48ef-9e7d-b6e133852609",
-      "name" : "admin",
-      "composite" : false
-    }, {
-      "id" : "2f680ece-f15d-4556-aee8-677f56f67ec2",
-      "name" : "user",
-      "composite" : false
-    } ],
-    "application" : {
-      "keycloakapp-services" : [ ],
-      "security-admin-console" : [ ],
-      "keycloakapp-web" : [ ],
-      "account" : [ {
-        "id" : "84cf5dfb-9fca-4909-9e0b-29d0ba9f624a",
-        "name" : "view-profile",
-        "composite" : false
-      }, {
-        "id" : "0cabde9d-0003-4f51-979f-acf1f66c870d",
-        "name" : "manage-account",
-        "composite" : false
-      } ],
-      "realm-management" : [ {
-        "id" : "c5261c24-875d-4028-bfed-d849813e290f",
-        "name" : "manage-applications",
-        "composite" : false
-      }, {
-        "id" : "9638925b-4d38-4d3f-8ae4-315887a598b9",
-        "name" : "manage-realm",
-        "composite" : false
-      }, {
-        "id" : "1d06b145-bacf-4fc4-9b7e-949ee1b8d090",
-        "name" : "manage-clients",
-        "composite" : false
-      }, {
-        "id" : "b68f87a8-7464-4309-9999-c0edf128b929",
-        "name" : "view-clients",
-        "composite" : false
-      }, {
-        "id" : "25f886b5-9ece-4c06-bdfe-2f0761e99335",
-        "name" : "view-events",
-        "composite" : false
-      }, {
-        "id" : "fde7f505-f4cf-4341-9fc3-410af76864e1",
-        "name" : "view-realm",
-        "composite" : false
-      }, {
-        "id" : "1b298c56-dc14-45b2-a4dc-ca4f686f23f4",
-        "name" : "realm-admin",
-        "composite" : true,
-        "composites" : {
-          "application" : {
-            "realm-management" : [ "manage-applications", "manage-realm", "manage-clients", "view-clients", "view-realm", "view-events", "view-applications", "manage-users", "manage-events", "view-users" ]
-          }
+    "realm" : "keycloak",
+    "enabled" : true,
+    "sslRequired" : "external",
+    "privateKey" : "MIICXAIBAAKBgQCUgrGF7rNIYRSWCZlT+JXGtjZtnn8/ZObzW12YSoRBUJ0mm6wzO6p8+aQYMXvtvB88zeWBD9+uZh8gWj+iOqByWCfX0Wez+mVK8ofhAsGniv631u+wmDESLrLvROX12r1fzmmVJYWOzEGW4v2Xmahl/6gHnzV0mHZfmJXEOniHqwIDAQABAoGAef9m79woASRm8d4Oy/FgsK2Mxr42UBCGvJFosKs+PB2KC2ZEro2sPyAgkhNMd/5bNur5Ru2QVcbkeQJKVe2NUTjEBhnm32QJrQBVGNLgvIv3Dozu24f2y5BhZHU0VYGnps0iYGYTa9ZZPgEjN0D3Fw3HkvFfxi3jL8PgHW4b10ECQQD0nJGGq1lhFca+sEKzXYgjV3gXA9bTY+FcdIFDwZ6va54vf9Of5lkSVJbqlVRMixN4cZrVegBYAM2P30raZd+hAkEAm2y7tbdLB/dRmUg/L0DmURBR4/Ld8c/LQtl192ZWfAqEoggXRe7brOa1DBoReftimxOOopDdZx3OrOqQkc9TywJAI2uwnwGc9bQDjYVUg0id+BAocZy6tO2Xqp2sQjV9VwWMaHBoIpVmfIMHP3zUMilJbn104EjEV/n1ykmZOzrZQQJAAiHMtWJtSg+vc93U2A4Y2rXRmcHkH4QNMr6O6rThrNPsG9jmkNQE+Ws0wpS89qJnKN9szngUQWzcP+z7zLQ+XwJBAN9HA4vx3/am9mFW3NGL8/qoNWJmxIMNw9aazZrmZAuV4e9Dkmx0bB2FMfruMv3a7WqGgLvWLbI6WBc+u6rJ2Fk=",
+    "publicKey" : "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCUgrGF7rNIYRSWCZlT+JXGtjZtnn8/ZObzW12YSoRBUJ0mm6wzO6p8+aQYMXvtvB88zeWBD9+uZh8gWj+iOqByWCfX0Wez+mVK8ofhAsGniv631u+wmDESLrLvROX12r1fzmmVJYWOzEGW4v2Xmahl/6gHnzV0mHZfmJXEOniHqwIDAQAB",
+    "roles" : {
+        "realm" : [
+            {
+                "name": "user",
+                "description": "User privileges"
+            },
+            {
+                "name": "admin",
+                "description": "Administrator privileges"
+            }
+        ]
+    },
+    "requiredCredentials" : [ "password" ],
+    "users" : [
+        {
+            "username" : "user",
+            "enabled": true,
+            "email" : "sample-user@example",
+            "firstName": "Sample",
+            "lastName": "User",
+            "credentials" : [
+                { "type" : "password",
+                    "value" : "password" }
+            ],
+            "realmRoles": [ "user" ],
+            "applicationRoles": {
+                "account": ["view-profile", "manage-account"]
+            }
         }
-      }, {
-        "id" : "ad380e28-4a7a-4da1-abc2-ef07ad971e53",
-        "name" : "view-applications",
-        "composite" : false
-      }, {
-        "id" : "087ff465-ee13-4666-b65c-4a77a9da1d4b",
-        "name" : "manage-users",
-        "composite" : false
-      }, {
-        "id" : "ab0a547a-3b2b-43c7-a9b1-8b9570ddc87f",
-        "name" : "manage-events",
-        "composite" : false
-      }, {
-        "id" : "fd415c06-3bc6-4075-b21d-f384ceee57d4",
-        "name" : "view-users",
-        "composite" : false
-      } ]
-    }
-  },
-  "requiredCredentials" : [ "password" ],
-  "users" : [ {
-    "id" : "ad6768b0-0846-44a9-af94-fca7ff2f2880",
-    "username" : "testuser",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : false,
-    "firstName" : "Test",
-    "lastName" : "User",
-    "email" : "testuser@somewhere.com",
-    "credentials" : [ {
-      "type" : "password",
-      "hashedSaltedValue" : "TRibCDD2nhXm9tm9W+9gDEslbw3K3MitxgD+i+9q4pp5ga/1VjGDc6tGGisyB4u/HIonCHNlRbUuMS2rhrSi+g==",
-      "salt" : "gvxzn+94qP/PAZ4XL4y6Sg==",
-      "hashIterations" : 1,
-      "temporary" : false
+    ],
+    "scopeMappings" : [ {
+        "client" : "third-party",
+        "roles" : [ "user" ]
     } ],
-    "requiredActions" : [ ],
-    "realmRoles" : [ "user" ],
-    "applicationRoles" : {
-      "account" : [ "view-profile", "manage-account" ]
-    }
-  } ],
-  "scopeMappings" : [ {
-    "client" : "third-party",
-    "roles" : [ "user" ]
-  } ],
-  "applicationScopeMappings" : {
-    "realm-management" : [ {
-      "client" : "security-admin-console",
-      "roles" : [ "realm-admin" ]
+
+    "applications" : [ {
+        "name" : "keycloakapp-services",
+        "surrogateAuthRequired" : false,
+        "enabled" : true,
+        "secret" : "8a63ad1f-534a-4aef-8316-559155804255",
+        "redirectUris" : [ ],
+        "webOrigins" : [ ],
+        "notBefore" : 0,
+        "bearerOnly" : true,
+        "publicClient" : false,
+        "fullScopeAllowed" : true
+    },  {
+        "name" : "keycloakapp-web",
+        "baseUrl" : "/keycloak/index.html",
+        "surrogateAuthRequired" : false,
+        "enabled" : true,
+        "secret" : "bfc35164-119c-4a60-9b6b-fae249548f2d",
+        "redirectUris" : [ "/keycloak/*" ],
+        "webOrigins" : [ ],
+        "notBefore" : 0,
+        "bearerOnly" : false,
+        "publicClient" : true,
+        "fullScopeAllowed" : true
+    }, {
+        "name" : "account",
+        "baseUrl" : "/auth/realms/keycloak/account",
+        "surrogateAuthRequired" : false,
+        "enabled" : true,
+        "secret" : "6316283f-09f8-4552-a596-972ce16562cc",
+        "defaultRoles" : [ "view-profile", "manage-account" ],
+        "redirectUris" : [ "/auth/realms/keycloak/account/*" ],
+        "webOrigins" : [ ],
+        "notBefore" : 0,
+        "bearerOnly" : false,
+        "publicClient" : false,
+        "fullScopeAllowed" : false
+    } ],
+    "oauthClients" : [ {
+        "name" : "third-party",
+        "redirectUris" : [ "org.aerogear.KeycloakDemo://oauth2Callback" ],
+        "webOrigins" : [ ],
+        "enabled" : true,
+        "publicClient" : true
     } ]
-  },
-  "applications" : [ {
-    "id" : "6feb9e8d-c9b0-49d7-ad01-5e6c1609c1e5",
-    "name" : "keycloakapp-services",
-    "surrogateAuthRequired" : false,
-    "enabled" : true,
-    "secret" : "8a63ad1f-534a-4aef-8316-559155804255",
-    "redirectUris" : [ ],
-    "webOrigins" : [ ],
-    "claims" : {
-      "name" : true,
-      "username" : true,
-      "profile" : true,
-      "picture" : true,
-      "website" : true,
-      "email" : true,
-      "gender" : true,
-      "locale" : true,
-      "address" : true,
-      "phone" : true
-    },
-    "notBefore" : 0,
-    "bearerOnly" : true,
-    "publicClient" : false,
-    "fullScopeAllowed" : true
-  }, {
-    "id" : "7c249d1e-57ca-4af8-a57d-f742082dae52",
-    "name" : "security-admin-console",
-    "baseUrl" : "/auth/admin/keycloak/console/index.html",
-    "surrogateAuthRequired" : false,
-    "enabled" : true,
-    "secret" : "ee01ccb1-0563-4e08-b65e-621e0eabcf5b",
-    "redirectUris" : [ "/auth/admin/keycloak/console/*" ],
-    "webOrigins" : [ ],
-    "claims" : {
-      "name" : true,
-      "username" : true,
-      "profile" : true,
-      "picture" : true,
-      "website" : true,
-      "email" : true,
-      "gender" : true,
-      "locale" : true,
-      "address" : true,
-      "phone" : true
-    },
-    "notBefore" : 0,
-    "bearerOnly" : false,
-    "publicClient" : true,
-    "fullScopeAllowed" : false
-  }, {
-    "id" : "1b856b54-385c-42ab-bb82-f1903ce4c2b8",
-    "name" : "keycloakapp-web",
-    "baseUrl" : "/keycloak/index.html",
-    "surrogateAuthRequired" : false,
-    "enabled" : true,
-    "secret" : "bfc35164-119c-4a60-9b6b-fae249548f2d",
-    "redirectUris" : [ "/keycloak/*" ],
-    "webOrigins" : [ ],
-    "claims" : {
-      "name" : true,
-      "username" : true,
-      "profile" : true,
-      "picture" : true,
-      "website" : true,
-      "email" : true,
-      "gender" : true,
-      "locale" : true,
-      "address" : true,
-      "phone" : true
-    },
-    "notBefore" : 0,
-    "bearerOnly" : false,
-    "publicClient" : true,
-    "fullScopeAllowed" : true
-  }, {
-    "id" : "0a42cff3-79c7-480b-8ecf-27a1f5d5c3d3",
-    "name" : "account",
-    "baseUrl" : "/auth/realms/keycloak/account",
-    "surrogateAuthRequired" : false,
-    "enabled" : true,
-    "secret" : "6316283f-09f8-4552-a596-972ce16562cc",
-    "defaultRoles" : [ "view-profile", "manage-account" ],
-    "redirectUris" : [ "/auth/realms/keycloak/account/*" ],
-    "webOrigins" : [ ],
-    "claims" : {
-      "name" : true,
-      "username" : true,
-      "profile" : true,
-      "picture" : true,
-      "website" : true,
-      "email" : true,
-      "gender" : true,
-      "locale" : true,
-      "address" : true,
-      "phone" : true
-    },
-    "notBefore" : 0,
-    "bearerOnly" : false,
-    "publicClient" : false,
-    "fullScopeAllowed" : false
-  }, {
-    "id" : "11cfadd7-899e-48d2-b569-1c43cafa67d2",
-    "name" : "realm-management",
-    "surrogateAuthRequired" : false,
-    "enabled" : true,
-    "secret" : "a802302c-4eb3-4816-9b97-8cf44fc51391",
-    "redirectUris" : [ ],
-    "webOrigins" : [ ],
-    "claims" : {
-      "name" : true,
-      "username" : true,
-      "profile" : true,
-      "picture" : true,
-      "website" : true,
-      "email" : true,
-      "gender" : true,
-      "locale" : true,
-      "address" : true,
-      "phone" : true
-    },
-    "notBefore" : 0,
-    "bearerOnly" : true,
-    "publicClient" : false,
-    "fullScopeAllowed" : false
-  } ],
-  "oauthClients" : [ {
-    "id" : "04159c63-5da0-46f0-b6e8-2ccda9c1d653",
-    "name" : "third-party",
-    "redirectUris" : [ "org.aerogear.KeycloakDemo://oauth2Callback" ],
-    "webOrigins" : [ ],
-    "enabled" : true,
-    "secret" : "3523250e-14c7-48fe-8be2-92aef4bcb149",
-    "notBefore" : 0,
-    "publicClient" : false,
-    "directGrantsOnly" : false,
-    "fullScopeAllowed" : false
-  } ],
-  "browserSecurityHeaders" : {
-    "contentSecurityPolicy" : "frame-src 'self'",
-    "xFrameOptions" : "SAMEORIGIN"
-  },
-  "socialProviders" : { },
-  "smtpServer" : { },
-  "eventsEnabled" : false,
-  "eventsExpiration" : 0,
-  "eventsListeners" : [ ]
 }
