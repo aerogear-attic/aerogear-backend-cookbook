@@ -33,7 +33,7 @@ With resteasy, a simple endpoint is defined:
 	    @GET
 	    @Produces(MediaType.APPLICATION_JSON)
 	    @Path("/products")
-	    public List<Product> product() {
+	    public List<Product> photo() {
 	        List<Product> products = new ArrayList<Product>();
 
 	        Product iPhone = new Product("iPhone", "2");
@@ -61,7 +61,7 @@ Go in ```src/main/webapp/WEB-INF/web.xml```
 
     <login-config>
         <auth-method>KEYCLOAK</auth-method>
-        <realm-name>product-inventory</realm-name>
+        <realm-name>photo-inventory</realm-name>
     </login-config>
 
     <security-role>
@@ -72,10 +72,10 @@ Go in ```src/main/webapp/WEB-INF/web.xml```
 and use keycloak.json
 
 	{
-	    "realm": "product-inventory",
+	    "realm": "photo-inventory",
 	    "realm-public-key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrVrCuTtArbgaZzL1hvh0xtL5mc7o0NqPVnYXkLvgcwiC3BjLGw1tGEGoJaXDuSaRllobm53JBhjx33UNv+5z/UMG4kytBWxheNVKnL6GgqlNabMaFfPLPCF8kAgKnsi79NMo+n6KnSY8YeUmec/p2vjO2NjsSAVcWEQMVhJ31LwIDAQAB",
 	    "auth-server-url": "http://localhost:8080/auth",
 	    "ssl-required": "external",
-	    "resource": "product-inventory",
+	    "resource": "photo-inventory",
 	    "public-client": true
 	}

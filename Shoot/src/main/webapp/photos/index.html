@@ -19,22 +19,20 @@
 
 <div id="content-area" class="col-md-9" role="main">
     <div id="content">
-        <h2><span>Products</span></h2>
+        <h2><span>Photos</span></h2>
         <a href="" ng-click="logout()">Sign Out</a>
         <button type="submit" data-ng-click="reloadData()">Reload</button>
-        <table class="table" data-ng-show="products.length > 0">
+        <table class="table" data-ng-show="photos.length > 0">
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Product Name</th>
-                <th>Product Image</th>
+                <th>Image</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="product in products">
-                <td>{{product.id}}</td>
-                <td>{{product.name}}</td>
-                <td><img ng-src="/shoot/rest/products/images/{{product.filename}}"></td>
+            <tr ng-repeat="photo in photos">
+                <td>{{photo.id}}</td>
+                <td><img ng-src="/shoot/rest/photos/images/{{photo.filename}}"></td>
             </tr>
             </tbody>
         </table>

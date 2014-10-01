@@ -16,7 +16,7 @@
  */
 package org.jboss.aerogear.shoot.services;
 
-import org.jboss.aerogear.shoot.model.Product;
+import org.jboss.aerogear.shoot.model.Photo;
 import org.jboss.aerogear.shoot.utils.Utils;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
@@ -36,11 +36,11 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * Products Service
+ * Photos Service
  */
 @Stateless
-@Path("/products")
-public class ProductService {
+@Path("/photos")
+public class PhotoService {
 
     // currently we use system 'temp' directory to store files
     private static final String
@@ -51,24 +51,24 @@ public class ProductService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Product> getAll() {
-        TypedQuery<Product> query = em.createNamedQuery("Product.findAllProducts", Product.class);
+    public List<Photo> getAll() {
+        TypedQuery<Photo> query = em.createNamedQuery("Photo.findAllPhotos", Photo.class);
         return query.getResultList();
     }
 
     @GET
     @Path("{id : \\d+}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Product get(@PathParam("id") long id) {
-        Product product = em.createNamedQuery("Product.findByPrimaryKey", Product.class)
+    public Photo get(@PathParam("id") long id) {
+        Photo photo = em.createNamedQuery("Photo.findByPrimaryKey", Photo.class)
                 .setParameter("id", id)
                 .getSingleResult();
 
-        if (product == null) {
+        if (photo == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
 
-        return product;
+        return photo;
     }
 
     @GET
@@ -89,12 +89,12 @@ public class ProductService {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response save(Product product) {
-        em.persist(product);
+    public Response save(Photo photo) {
+        em.persist(photo);
 
         return Response.created(
-                UriBuilder.fromResource(ProductService.class)
-                        .path(String.valueOf(product.getId())).build()).build();
+                UriBuilder.fromResource(PhotoService.class)
+                        .path(String.valueOf(photo.getId())).build()).build();
     }
 
     @POST
@@ -102,7 +102,7 @@ public class ProductService {
     public Response upload(MultipartFormDataInput input) {
         List<InputPart> parts = input.getParts();
 
-        String name = null, filename = null;
+        String filename = null;
 
         // extract multipart parts and save uploaded file
         for (InputPart part : parts) {
@@ -114,8 +114,6 @@ public class ProductService {
                     InputStream is = part.getBody(InputStream.class, null);
 
                     Utils.saveFile(is, SERVER_UPLOAD_LOCATION_FOLDER + filename);
-                } else {
-                    name = part.getBodyAsString();
                 }
 
             } catch (IOException e) {
@@ -123,18 +121,18 @@ public class ProductService {
             }
         }
 
-        Product product = new Product(name, filename);
-        em.persist(product);
+        Photo photo = new Photo(filename);
+        em.persist(photo);
         return Response.created(
-                UriBuilder.fromResource(ProductService.class)
-                        .path(String.valueOf(product.getId())).build()).build();
+                UriBuilder.fromResource(PhotoService.class)
+                        .path(String.valueOf(photo.getId())).build()).build();
     }
 
     @PUT
     @Path("{id : \\d+}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response update(@PathParam("id") long id, Product product) {
-        Product existing = em.createNamedQuery("Product.findByPrimaryKey", Product.class)
+    public Response update(@PathParam("id") long id, Photo photo) {
+        Photo existing = em.createNamedQuery("Photo.findByPrimaryKey", Photo.class)
                 .setParameter("id", id)
                 .getSingleResult();
 
@@ -142,24 +140,24 @@ public class ProductService {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
 
-        em.merge(product);
+        em.merge(photo);
         return Response.ok(
-                UriBuilder.fromResource(ProductService.class)
-                        .path(String.valueOf(product.getId())).build()).build();
+                UriBuilder.fromResource(PhotoService.class)
+                        .path(String.valueOf(photo.getId())).build()).build();
     }
 
     @DELETE
     @Path("{id : \\d+}")
     public Response delete(@PathParam("id") long id) {
-        Product product = em.createNamedQuery("Product.findByPrimaryKey", Product.class)
+        Photo photo = em.createNamedQuery("Photo.findByPrimaryKey", Photo.class)
                 .setParameter("id", id)
                 .getSingleResult();
 
-        if (product == null) {
+        if (photo == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
 
-        em.remove(product);
+        em.remove(photo);
         return Response.noContent().build();
     }
 }

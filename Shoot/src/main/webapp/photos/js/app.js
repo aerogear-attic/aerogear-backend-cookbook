@@ -1,4 +1,4 @@
-var module = angular.module('product', []);
+var module = angular.module('photo', []);
 
 var auth = {};
 var logout = function(){
@@ -16,11 +16,11 @@ angular.element(document).ready(function ($http) {
     keycloakAuth.init({ onLoad: 'login-required' }).success(function () {
         auth.loggedIn = true;
         auth.authz = keycloakAuth;
-        auth.logoutUrl = keycloakAuth.authServerUrl + "/realms/shoot-realm/tokens/logout?redirect_uri=/shoot/products/index.html";
+        auth.logoutUrl = keycloakAuth.authServerUrl + "/realms/shoot-realm/tokens/logout?redirect_uri=/shoot/photos/index.html";
         module.factory('Auth', function() {
             return auth;
         });
-        angular.bootstrap(document, ["product"]);
+        angular.bootstrap(document, ["photo"]);
     }).error(function () {
             window.location.reload();
         });
@@ -28,10 +28,10 @@ angular.element(document).ready(function ($http) {
 });
 
 module.controller('GlobalCtrl', function($scope, $http) {
-    $scope.products = [];
+    $scope.photos = [];
     $scope.reloadData = function() {
-        $http.get("/shoot/rest/products").success(function(data) {
-            $scope.products = angular.fromJson(data);
+        $http.get("/shoot/rest/photos").success(function(data) {
+            $scope.photos = angular.fromJson(data);
 
         });
 

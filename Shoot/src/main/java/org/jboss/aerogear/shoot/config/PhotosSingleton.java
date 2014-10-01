@@ -1,6 +1,6 @@
 package org.jboss.aerogear.shoot.config;
 
-import org.jboss.aerogear.shoot.model.Product;
+import org.jboss.aerogear.shoot.model.Photo;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
@@ -27,7 +27,7 @@ import javax.persistence.PersistenceContext;
 
 @Singleton
 @Startup
-public class ProductsSingleton {
+public class PhotosSingleton {
 
     @PersistenceContext(unitName = "shoot")
     private EntityManager em;
@@ -37,9 +37,7 @@ public class ProductsSingleton {
      */
     @PostConstruct
     public void create() {
-        em.persist(new Product("iPhone"));
-        em.persist(new Product("iPad"));
-        em.persist(new Product("iPad"));
+        em.persist(new Photo("iPhone"));
     }
 }
 

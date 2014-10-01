@@ -20,34 +20,26 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Models a Product
+ * Models a Photo
  */
 @Entity
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "Product.findAllProducts",  query = "SELECT p FROM Product p"),
-        @NamedQuery(name = "Product.findByPrimaryKey", query = "SELECT p FROM Product p WHERE p.id = :id")
+        @NamedQuery(name = "Photo.findAllPhotos",  query = "SELECT p FROM Photo p"),
+        @NamedQuery(name = "Photo.findByPrimaryKey", query = "SELECT p FROM Photo p WHERE p.id = :id")
 })
-public class Product {
+public class Photo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(nullable = false)
-    private String name;
-
     @Column
     private String filename;
 
-    public Product() {}
+    public Photo() {}
 
-    public Product(String name) {
-        this.name = name;
-    }
-
-    public Product(String name, String filename) {
-        this.name = name;
+    public Photo(String filename) {
         this.filename = filename;
     }
 
@@ -57,14 +49,6 @@ public class Product {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getFilename() {
