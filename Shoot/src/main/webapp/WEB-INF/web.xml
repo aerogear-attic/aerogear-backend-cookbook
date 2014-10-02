@@ -10,6 +10,9 @@
         <web-resource-collection>
             <url-pattern>/rest/*</url-pattern>
         </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
         <auth-constraint>
             <role-name>user</role-name>
         </auth-constraint>
