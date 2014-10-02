@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Keycloak Demo</title>
+    <title>Shoot Snapshot</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 
     <script src="../lib/angular/angular.js"></script>
@@ -23,18 +23,9 @@
         <a href="" ng-click="logout()">Sign Out</a>
         <button type="submit" data-ng-click="reloadData()">Reload</button>
         <table class="table" data-ng-show="photos.length > 0">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Image</th>
-            </tr>
-            </thead>
-            <tbody>
             <tr ng-repeat="photo in photos">
-                <td>{{photo.id}}</td>
-                <td><img ng-src="/shoot/rest/photos/images/{{photo.filename}}"></td>
+                <td><img ng-src="{{photo.src}}"/></td>
             </tr>
-            </tbody>
         </table>
     </div>
 </div>

@@ -31,13 +31,21 @@ module.controller('GlobalCtrl', function($scope, $http) {
     $scope.photos = [];
     $scope.reloadData = function() {
         $http.get("/shoot/rest/photos").success(function(data) {
+
             $scope.photos = angular.fromJson(data);
+            data.forEach(function(elt, index){
+                $http.get("/shoot/rest/photos/images/" + elt.filename ).success(function(data) {
+                    console.log("inside get photos")
+                    elt.src = "data:image/jpeg;base64," + data;
+                });
+            })
 
         });
 
     };
     $scope.logout = logout;
 });
+
 
 module.factory('authInterceptor', function($q, Auth) {
     return {

@@ -20,6 +20,7 @@ import org.jboss.aerogear.shoot.model.Photo;
 import org.jboss.aerogear.shoot.utils.Utils;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
+import org.jboss.resteasy.util.Base64;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -33,6 +34,9 @@ import javax.ws.rs.core.UriBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,6 +57,9 @@ public class PhotoService {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Photo> getAll() {
         TypedQuery<Photo> query = em.createNamedQuery("Photo.findAllPhotos", Photo.class);
+        if (query.getResultList().isEmpty()) {
+            return new ArrayList<Photo>();
+        }
         return query.getResultList();
     }
 
@@ -81,7 +88,12 @@ public class PhotoService {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
 
-        Response.ResponseBuilder response = Response.ok(file);
+        Response.ResponseBuilder response = null;
+        try {
+            response = Response.ok(Base64.encodeBytes(Files.readAllBytes(Paths.get(SERVER_UPLOAD_LOCATION_FOLDER + filename))));
+        } catch (IOException e) {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
         response.header("Content-Disposition", "attachment; filename=" + filename);
 
         return response.build();
