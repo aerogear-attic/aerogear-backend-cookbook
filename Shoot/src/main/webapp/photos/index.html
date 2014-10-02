@@ -7,27 +7,39 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 
     <script src="../lib/angular/angular.js"></script>
-    <script src="../lib/angular/angular-resource.js"></script>
-    <script src="../lib/angular/angular-route.js"></script>
+    <script src="../lib/angular/angular-bootstrap.js"></script>
     <script src="../lib/angular/ui-bootstrap-tpls-0.4.0.js"></script>
 
     <script src="/auth/js/keycloak.js"></script>
     <script src="js/app.js" type="text/javascript"></script>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body data-ng-controller="GlobalCtrl">
+<body>
 
-<div id="content-area" class="col-md-9" role="main">
-    <div id="content">
-        <h2><span>Photos</span></h2>
-        <a href="" ng-click="logout()">Sign Out</a>
-        <button type="submit" data-ng-click="reloadData()">Reload</button>
-        <table class="table" data-ng-show="photos.length > 0">
-            <tr ng-repeat="photo in photos">
-                <td><img ng-src="{{photo.src}}"/></td>
-            </tr>
-        </table>
+
+<div ng-controller="GlobalCtrl">
+    <div style="margin:auto;max-width: 12em">
+        <h1 class="title">Shoot'nShare</h1>
+        <div class="btn-group">
+            <label class="btn btn-primary" ng-model="radioModel" data-ng-click="reloadData()">Get latest!</label>
+            <label class="btn btn-primary" ng-model="radioModel"  ng-click="logout()">Sign out</label>
+            <br/>
+        </div>
+    </div>
+    <div style="width:40em;margin:auto;">
+        <carousel interval="myInterval">
+            <slide ng-repeat="photo in photos"  active="photo.active">
+                <img style="margin:auto;" ng-src="{{photo.src}}">
+                <div class="carousel-caption">
+                    <h4>Slide {{$index}}</h4>
+                    <p>{{photo.id}}</p>
+                </div>
+            </slide>
+        </carousel>
     </div>
 </div>
+
 </body>
 </html>

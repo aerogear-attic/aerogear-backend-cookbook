@@ -1,4 +1,4 @@
-var module = angular.module('photo', []);
+var module = angular.module('photo', ['ui.bootstrap']);
 
 var auth = {};
 var logout = function(){
@@ -29,9 +29,9 @@ angular.element(document).ready(function ($http) {
 
 module.controller('GlobalCtrl', function($scope, $http) {
     $scope.photos = [];
+    $scope.myInterval = 2000;
     $scope.reloadData = function() {
         $http.get("/shoot/rest/photos").success(function(data) {
-
             $scope.photos = angular.fromJson(data);
             data.forEach(function(elt, index){
                 $http.get("/shoot/rest/photos/images/" + elt.filename ).success(function(data) {
@@ -39,11 +39,10 @@ module.controller('GlobalCtrl', function($scope, $http) {
                     elt.src = "data:image/jpeg;base64," + data;
                 });
             })
-
         });
-
     };
     $scope.logout = logout;
+    $scope.reloadData();
 });
 
 
@@ -65,17 +64,6 @@ module.factory('authInterceptor', function($q, Auth) {
         }
     };
 });
-
-module.directive('lazyLoad', function($timeout) {
-    return {
-        restrict:'A',
-        scope: {},
-        link: function(scope, elem, attrs) {
-            $timeout(function(){ elem.attr('src', attrs.llSrc) });
-        }
-    }
-});
-
 
 module.config(function($httpProvider) {
     $httpProvider.responseInterceptors.push('errorInterceptor');
