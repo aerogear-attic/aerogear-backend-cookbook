@@ -37,6 +37,9 @@
     "scopeMappings" : [ {
         "client" : "shoot-third-party",
         "roles" : [ "user" ]
+    }, {
+        "client" : "shoot-openid",
+        "roles" : [ "user" ]
     } ],
 
     "applications" : [ {
@@ -57,5 +60,18 @@
         "webOrigins" : [ ],
         "enabled" : true,
         "publicClient" : true
-    } ]
+    },
+        {
+            "name" : "shoot-openid",
+            "redirectUris" : [ "org.aerogear.Shared://oauth2Callback" ],
+            "webOrigins" : [ ],
+            "enabled" : true,
+            "publicClient" : true,
+            "claims": {
+                "name": true,
+                "username": true,
+                "email": true
+            }
+        }
+    ]
 }
