@@ -144,6 +144,6 @@ module.factory('authInterceptor', function($q, Auth) {
 
 #### Shoot-realm
 
-In your realm you have one web app ```shoot-web```, secures ervices endpoint ```shoot-services``` and one OAuth2 client ```shoot-third-party```.
+In your realm you have one web app ```shoot-web```, secure services endpoints ```shoot-services``` and one OAuth2 client ```shoot-third-party```.
 ![Shoot-realm](https://github.com/aerogear/aerogear-backend-cookbook/raw/master/Shoot/shoot-realm.png "Shoot-realm")
 
