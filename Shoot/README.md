@@ -32,7 +32,9 @@ To test Cordova client go to [TODO]().
 * choose a picture in camera roll
 * select share with Keycloak
 * in Shoot'nShare web-app, click on "Get latest!" button
-![Shoot'nShare web-app](https://github.com/aerogear/aerogear-backend-cookbook/raw/master/Shoot/Shoot_web-app.png "Shoot web-app")
+
+
+![Shoot'nShare web-app](https://github.com/corinnekrych/aerogear-backend-cookbook/raw/master/Shoot/Shoot_web-app.png "Shoot web-app")
 
 ### How does it work?
 
@@ -145,5 +147,6 @@ module.factory('authInterceptor', function($q, Auth) {
 #### Shoot-realm
 
 In your realm you have one web app ```shoot-web```, secure services endpoints ```shoot-services``` and one OAuth2 client ```shoot-third-party```.
-![Shoot-realm](https://github.com/aerogear/aerogear-backend-cookbook/raw/master/Shoot/shoot-realm.png "Shoot-realm")
+
+![Shoot-realm](https://github.com/corinnekrych/aerogear-backend-cookbook/raw/master/Shoot/shoot-realm.png "Shoot-realm")
 
