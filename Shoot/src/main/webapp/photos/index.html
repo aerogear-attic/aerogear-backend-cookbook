@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Shoot Snapshot</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+    <script src="../lib/angular/angular.js"></script>
+    <script src="../lib/angular/angular-bootstrap.js"></script>
+    <script src="../lib/angular/ui-bootstrap-tpls-0.4.0.js"></script>
+
+    <script src="/auth/js/keycloak.js"></script>
+    <script src="js/app.js" type="text/javascript"></script>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+<div ng-controller="GlobalCtrl">
+    <div style="margin:auto;max-width: 12em">
+        <h1 class="title">Shoot'nShare</h1>
+        <div class="btn-group">
+            <label class="btn btn-primary" ng-model="radioModel" data-ng-click="reloadData()">Get latest!</label>
+            <label class="btn btn-primary" ng-model="radioModel"  ng-click="logout()">Sign out</label>
+        </div>
+    </div>
+    <div style="width:40em;margin:auto;">
+        <carousel interval="myInterval">
+            <slide ng-repeat="photo in photos"  active="photo.active">
+                <img style="margin:auto;" ng-src="{{photo.src}}">
+                <div class="carousel-caption">
+                    <h4>Slide {{$index}}</h4>
+                    <p>{{photo.id}}</p>
+                </div>
+            </slide>
+        </carousel>
+    </div>
+</div>
+
+</body>
+</html>
