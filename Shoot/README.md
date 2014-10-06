@@ -148,5 +148,5 @@ module.factory('authInterceptor', function($q, Auth) {
 
 In your realm you have one web app ```shoot-web```, secure services endpoints ```shoot-services``` and one OAuth2 client ```shoot-third-party```.
 
-![Shoot-realm](https://github.com/corinnekrych/aerogear-backend-cookbook/raw/master/Shoot/shoot-realm.png "Shoot-realm")
+![Shoot-realm](https://github.com/corinnekrych/aerogear-backend-cookbook/raw/master/Shoot/shoot-ream.png "Shoot-realm")
 
