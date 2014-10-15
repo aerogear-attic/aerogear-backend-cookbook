@@ -17,7 +17,7 @@ A simple example to demo OAuth2 authorization code grant with Keycloak.
 ### Build and Deploy
 
 	mvn clean install
-	mvn jboss-as:deploy
+	mvn wildfly:deploy
 
 To test iOS client go to [iOS cookbook Shoot recipe](https://github.com/aerogear/aerogear-ios-cookbook/tree/swift/Shoot)
 To test Android client go to [TODO]().
