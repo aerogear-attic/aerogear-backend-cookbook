@@ -48,7 +48,7 @@ public class PhotoService {
 
     // currently we use system 'temp' directory to store files
     private static final String
-            SERVER_UPLOAD_LOCATION_FOLDER = System.getProperty("java.io.tmpdir");
+            SERVER_UPLOAD_LOCATION_FOLDER = System.getProperty("java.io.tmpdir") + File.separator;
 
     @PersistenceContext(unitName = "shoot")
     private EntityManager em;
@@ -125,7 +125,7 @@ public class PhotoService {
                 if (filename != null) {
                     InputStream is = part.getBody(InputStream.class, null);
 
-                    Utils.saveFile(is, SERVER_UPLOAD_LOCATION_FOLDER + filename);
+                    Utils.saveFile(is, SERVER_UPLOAD_LOCATION_FOLDER  + filename);
                 }
 
             } catch (IOException e) {
