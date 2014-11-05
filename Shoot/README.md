@@ -89,7 +89,7 @@ Go in ```src/main/webapp/WEB-INF/web.xml```
     </security-role>
 ```
 
-NOTE: For simplicity our demo does not use https BUT all OAuth2 protected REST points should be using SSL. If you are using WilfFly or EAP follow this [link to enable SSL](https://docs.jboss.org/author/pages/viewpage.action?pageId=66322705) or consult your application server's documentation page.
+NOTE: For simplicity our demo does not use https BUT all OAuth2 protected REST points should be using SSL. If you are using WildFly or EAP follow this [link to enable HTTPS](https://docs.jboss.org/author/pages/viewpage.action?pageId=66322705) or consult your application server's documentation page.
 
 and use ```src/main/webapp/WEB-INF/keycloak.json```, you link your java endpoint with keyclaok realm application. Here the application is names ```shoot-services```
 
