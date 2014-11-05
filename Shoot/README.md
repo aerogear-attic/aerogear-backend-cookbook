@@ -17,7 +17,7 @@ A simple example to demo OAuth2 authorization code grant with Keycloak.
 ### Build and Deploy
 
 	mvn clean install
-	mvn jboss-as:deploy
+	mvn wildfly:deploy
 
 To test iOS client go to [iOS cookbook Shoot recipe](https://github.com/aerogear/aerogear-ios-cookbook/tree/swift/Shoot)
 To test Android client go to [TODO]().
@@ -34,7 +34,7 @@ To test Cordova client go to [TODO]().
 * in Shoot'nShare web-app, click on "Get latest!" button
 
 
-![Shoot'nShare web-app](https://github.com/corinnekrych/aerogear-backend-cookbook/raw/master/Shoot/Shoot_web-app.png "Shoot web-app")
+![Shoot'nShare web-app](https://github.com/aerogear/aerogear-backend-cookbook/raw/master/Shoot/Shoot_web-app.png "Shoot web-app")
 
 ### How does it work?
 
@@ -88,6 +88,8 @@ Go in ```src/main/webapp/WEB-INF/web.xml```
         <role-name>user</role-name>
     </security-role>
 ```
+
+NOTE: For simplicity our demo does not use https BUT all OAuth2 protected REST points should be using SSL. If you are using WildFly or EAP follow this [link to enable HTTPS](https://docs.jboss.org/author/pages/viewpage.action?pageId=66322705) or consult your application server's documentation page.
 
 and use ```src/main/webapp/WEB-INF/keycloak.json```, you link your java endpoint with keyclaok realm application. Here the application is names ```shoot-services```
 

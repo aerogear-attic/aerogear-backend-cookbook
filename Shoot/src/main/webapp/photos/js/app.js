@@ -32,14 +32,21 @@ module.controller('GlobalCtrl', function($scope, $http) {
     $scope.myInterval = 2000;
     $scope.reloadData = function() {
         $http.get("/shoot/rest/photos").success(function(data) {
-            $scope.photos = angular.fromJson(data);
-            data.forEach(function(elt, index){
-                $http.get("/shoot/rest/photos/images/" + elt.filename ).success(function(data) {
+
+            var previousLength = $scope.photos.length
+            var photosFromServer = angular.fromJson(data);
+            for (var i = previousLength; i < data.length; i++) {
+                $scope.photos.push(photosFromServer[i]);
+                $http.get("/shoot/rest/photos/images/" + data[i].filename).success(function(binary) {
                     console.log("inside get photos")
-                    elt.src = "data:image/jpeg;base64," + data;
+                    data[i-1].src = "data:image/jpeg;base64," + binary;
                 });
-            })
+            }
+
+
+
         });
+        setTimeout($scope.reloadData, 2000);
     };
     $scope.logout = logout;
     $scope.reloadData();

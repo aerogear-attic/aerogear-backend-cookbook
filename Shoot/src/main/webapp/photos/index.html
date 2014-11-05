@@ -3,40 +3,91 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Shoot Snapshot</title>
+
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 
     <script src="../lib/angular/angular.js"></script>
     <script src="../lib/angular/angular-bootstrap.js"></script>
-    <script src="../lib/angular/ui-bootstrap-tpls-0.4.0.js"></script>
+    <script src="../lib/angular/ui-bootstrap-tpls-0.11.2.js"></script>
 
     <script src="/auth/js/keycloak.js"></script>
     <script src="js/app.js" type="text/javascript"></script>
-
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
 <body>
 
 
-<div ng-controller="GlobalCtrl">
-    <div style="margin:auto;max-width: 12em">
-        <h1 class="title">Shoot'nShare</h1>
-        <div class="btn-group">
-            <label class="btn btn-primary" ng-model="radioModel" data-ng-click="reloadData()">Get latest!</label>
-            <label class="btn btn-primary" ng-model="radioModel"  ng-click="logout()">Sign out</label>
+<div ng-controller="GlobalCtrl" class="global container-fluid wrapper">
+    <div class="container-fluid header">
+        <div class="container">
+            <div class="nav navbar-default header">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" style="color: white; font-size: 28px">Shoot'nShare</a>
+                </div>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li><a style="color: white;" href="" ng-click="logout()">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-    <div style="width:40em;margin:auto;">
-        <carousel interval="myInterval">
-            <slide ng-repeat="photo in photos"  active="photo.active">
-                <img style="margin:auto;" ng-src="{{photo.src}}">
-                <div class="carousel-caption">
-                    <h4>Slide {{$index}}</h4>
-                    <p>{{photo.id}}</p>
+    <div class="container">
+        <div class="row carousel carousel-height">
+            <carousel interval="3000" style="height: 300px;">
+                <slide ng-repeat="photo in photos" active="photo.active">
+                    <img style="margin:auto;height: 300px" ng-src="{{photo.src}}">
+                    <div class="carousel-caption">
+                        <h4>Slide {{$index}}</h4>
+                        <p>{{photo.id}}</p>
+                    </div>
+                </slide>
+            </carousel>
+        </div>
+        <div class="row comments">
+            <div class="col-md-6">
+                <h1>Welcome !</h1>
+                <blockquote>
+                    <p>Shoot'nShare powered by AeroGear OAuth2 and Keycloak.</p>
+                    <p> AeroGear provides flexible and extensible libraries to simplify mobile development across platforms and cut common repetitive infrastructure tasks.
+                    </p>
+                    <small><a href="http://aerogear.org">AeroGear Team</a>, Open Source libs</small>
+                </blockquote>
+            </div>
+            <div class="col-md-6">
+                <h1>Comments</h1>
+                <div class="tweet">
+                    <img alt="" style="height: 48px" src="../img/corinne.png">
+                    <p>I've just posted an article on aerogear oauth2 lib on my Blog <a href="http://corinnekrych.blogspot.fr/2014/10/aerogear-with-keycloak-oauth2-friends.html">http://corinnekrych.org</a></p>
+                    <small>Corinne Krych</small>
                 </div>
-            </slide>
-        </carousel>
+                <div class="tweet">
+                    <img alt="" style="height: 48px" src="../img/christos.jpeg">
+                    <p>AeroGear + Keycloak = OAuth2 <3</p>
+                    <small>Christos Vasilak</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid header">
+    <div class="container">
+        <div class="footer nav navbar-default" style="background-color: black">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img style="height:30px;" src="../img/aerogear_logo.png">
+                </a>
+            </div>
+            <div class="navbar-right">
+                <a class="navbar-brand" href="#">
+                    <img style="height:30px" src="../img/redhat.svg">
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 

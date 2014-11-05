@@ -54,7 +54,7 @@
         <resteasy.jackson.version>3.0.9.Final</resteasy.jackson.version>
         <java.version>1.6</java.version>
         <maven.compile.plugin.version>3.1</maven.compile.plugin.version>
-        <jboss.maven.plugin.version>7.4.Final</jboss.maven.plugin.version>
+        <wildfly.maven.plugin.version>1.0.2.Final</wildfly.maven.plugin.version>
         <javaee6.bom.version>1.0.0.Final</javaee6.bom.version>
     </properties>
 
@@ -123,9 +123,9 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.jboss.as.plugins</groupId>
-                <artifactId>jboss-as-maven-plugin</artifactId>
-                <version>${jboss.maven.plugin.version}</version>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${wildfly.maven.plugin.version}</version>
             </plugin>
         </plugins>
     </build>
