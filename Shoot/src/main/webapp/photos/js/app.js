@@ -38,18 +38,26 @@ module.controller('GlobalCtrl', function($scope, $http) {
             for (var i = previousLength; i < data.length; i++) {
                 $scope.photos.push(photosFromServer[i]);
                 $http.get("/shoot/rest/photos/images/" + data[i].filename).success(function(binary) {
-                    console.log("inside get photos")
                     data[i-1].src = "data:image/jpeg;base64," + binary;
                 });
             }
-
-
-
         });
         setTimeout($scope.reloadData, 2000);
     };
+
+    $scope.reloadAllData = function() {
+        $http.get("/shoot/rest/photos").success(function(data) {
+            $scope.photos = angular.fromJson(data);
+            data.forEach(function(elt, index){
+                $http.get("/shoot/rest/photos/images/" + elt.filename ).success(function(data) {
+                    elt.src = "data:image/jpeg;base64," + data;
+                });
+            })
+            setTimeout($scope.reloadData, 2000);
+        });
+    };
     $scope.logout = logout;
-    $scope.reloadData();
+    $scope.reloadAllData();
 });
 
 
@@ -89,7 +97,7 @@ module.factory('errorInterceptor', function($q) {
             } else if (response.status == 403) {
                 alert("Forbidden");
             } else if (response.status == 404) {
-                alert("Not found");
+                //alert("Not found");
             } else if (response.status) {
                 if (response.data && response.data.errorMessage) {
                     alert(response.data.errorMessage);
