@@ -1,9 +1,9 @@
 ## Authentication
-A simple JAX-RS example that utilizes [Picketlink](http://picketlink.org) to demo HTTP Basic/Digest authentication. The demo was build to support the ```Authentication``` demo found in AeroGear [iOS](https://github.com/aerogear/aerogear-ios-cookbook/tree/master/Authentication) and [Android](https://github.com/aerogear/aerogear-android-cookbook/tree/master/src/org/jboss/aerogear/cookbook/authentication) cookbook's.
+A simple JAX-RS example that uses [Picketlink](http://picketlink.org) to demo HTTP Basic/Digest authentication. The demo was built to support the ```Authentication``` demo found in AeroGear [iOS](https://github.com/aerogear/aerogear-ios-cookbook/tree/master/Authentication) and [Android](https://github.com/aerogear/aerogear-android-cookbook/tree/master/src/org/jboss/aerogear/cookbook/authentication) cookbook's.
 
 ## GET /rest/grocery/bacons  (HTTP Digest)
 
-Retrieve list of team developers
+Retrieve grocery shopping list
 curl -c cookie -b cookie -v --digest -u "agnes:123" http://localhost:8080/authentication/rest/grocery/bacons
 
 ```
@@ -17,7 +17,7 @@ curl -v \
 
 ## GET /rest/grocery/beers  (HTTP Basic)
 
-Retrieve list of team developers
+Retrieve grocery shopping list
 curl -c cookie -b cookie -v --digest -u "agnes:123" http://localhost:8080/authentication/rest/grocery/bacons
 
 ```
