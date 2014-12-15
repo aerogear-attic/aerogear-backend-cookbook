@@ -111,7 +111,8 @@ public class PhotoService {
 
     @POST
     @Consumes("multipart/form-data")
-    public Response upload(MultipartFormDataInput input) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Photo upload(MultipartFormDataInput input) {
         List<InputPart> parts = input.getParts();
         String filename = null;
         for (InputPart part : parts) {
@@ -120,14 +121,13 @@ public class PhotoService {
                 InputStream is = part.getBody(InputStream.class, null);
                 Utils.saveFile(is, SERVER_UPLOAD_LOCATION_FOLDER  + filename);
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new WebApplicationException(e);
             }
         }
+
         Photo photo = new Photo(filename);
         em.persist(photo);
-        return Response.created(
-                UriBuilder.fromResource(PhotoService.class)
-                        .path(String.valueOf(photo.getId())).build()).build();
+        return photo;
     }
 
     @PUT
