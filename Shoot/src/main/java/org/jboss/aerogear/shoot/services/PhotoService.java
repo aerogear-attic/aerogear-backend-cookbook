@@ -28,7 +28,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import java.io.File;
@@ -38,6 +37,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Photos Service
@@ -111,33 +111,23 @@ public class PhotoService {
 
     @POST
     @Consumes("multipart/form-data")
-    public Response upload(MultipartFormDataInput input) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Photo upload(MultipartFormDataInput input) {
         List<InputPart> parts = input.getParts();
-
         String filename = null;
-
-        // extract multipart parts and save uploaded file
         for (InputPart part : parts) {
             try {
-                MultivaluedMap<String, String> headers = part.getHeaders();
-                filename = Utils.parseFileName(headers);
-
-                if (filename != null) {
-                    InputStream is = part.getBody(InputStream.class, null);
-
-                    Utils.saveFile(is, SERVER_UPLOAD_LOCATION_FOLDER  + filename);
-                }
-
+                filename = UUID.randomUUID() + ".jpg";
+                InputStream is = part.getBody(InputStream.class, null);
+                Utils.saveFile(is, SERVER_UPLOAD_LOCATION_FOLDER  + filename);
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new WebApplicationException(e);
             }
         }
 
         Photo photo = new Photo(filename);
         em.persist(photo);
-        return Response.created(
-                UriBuilder.fromResource(PhotoService.class)
-                        .path(String.valueOf(photo.getId())).build()).build();
+        return photo;
     }
 
     @PUT

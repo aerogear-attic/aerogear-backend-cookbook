@@ -32,10 +32,27 @@
             "applicationRoles": {
                 "account": ["view-profile", "manage-account"]
             }
+        }, {
+            "username" : "corinnekrych",
+            "email" : "corinnek@mymail.com",
+            "enabled": true,
+            "firstName": "Corinne",
+            "lastName": "Krych",
+            "credentials" : [
+                { "type" : "password",
+                  "value" : "password" }
+            ],
+            "realmRoles": [ "user" ],
+            "applicationRoles": {
+                "account": ["view-profile", "manage-account"]
+            }
         }
     ],
     "scopeMappings" : [ {
         "client" : "shoot-third-party",
+        "roles" : [ "user" ]
+    }, {
+        "client" : "sharedshoot-third-party",
         "roles" : [ "user" ]
     } ],
 
@@ -57,5 +74,24 @@
         "webOrigins" : [ ],
         "enabled" : true,
         "publicClient" : true
-    } ]
+    }, {
+        "name" : "sharedshoot-third-party",
+        "redirectUris" : [ "org.aerogear.SharedShoot://oauth2Callback", "http://oauth2callback" ],
+        "webOrigins" : [ ],
+        "claims" : {
+            "name" : true,
+            "username" : true,
+            "profile" : true,
+            "picture" : true,
+            "website" : true,
+            "email" : true,
+            "gender" : true,
+            "locale" : true,
+            "address" : true,
+            "phone" : true
+        },
+        "enabled" : true,
+        "publicClient" : true
+    }
+    ]
 }
