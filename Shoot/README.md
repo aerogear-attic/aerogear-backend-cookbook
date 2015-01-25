@@ -4,11 +4,11 @@ A simple example to demo OAuth2 authorization code grant with Keycloak.
 
 ### Pre-requisites
 
-* use [Keycloak Appliance Distribution](http://docs.jboss.org/keycloak/docs/1.0-final/userguide/html/server-installation.html#Appliance_install) comes with a preconfigured Keycloak server (based on Wildfly). 
+* use [Keycloak Appliance Distribution (version 1.0.4.Final)](http://docs.jboss.org/keycloak/docs/1.0.4.Final/userguide/html/server-installation.html#Appliance_install) comes with a preconfigured Keycloak server (based on Wildfly). 
 
 * go to KEYCLOAK_APPLIANCE_HOME/Keycload/bin and start the server
 	
-	standalone.sh -b0.0.0.0
+	standalone.sh -b 0.0.0.0
 
 * open a browser to http://localhost:8080/auth/admin/index.html. You
 
