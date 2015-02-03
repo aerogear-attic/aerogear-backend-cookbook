@@ -34,7 +34,7 @@ To test Cordova client go to [TODO]().
 * in Shoot'nShare web-app, click on "Get latest!" button
 
 
-![Shoot'nShare web-app](https://github.com/aerogear/aerogear-backend-cookbook/raw/master/Shoot/Shoot_web-app.png "Shoot web-app")
+![Shoot'nShare web-app](https://github.com/aerogear/aerogear-backend-cookbook/raw/master/Shoot/shoot_web-app.png "Shoot web-app")
 
 ### How does it work?
 
