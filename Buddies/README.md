@@ -1,7 +1,6 @@
 ## Buddies: simple REST endpoint
-A simple example to demo OAUth2 authorization code grant with Keycloak.
 
-## GET /rest/team/developers
+### GET /rest/team/developers
 
 Retrieve list of team developers
 
