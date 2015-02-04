@@ -35,20 +35,6 @@
             "applicationRoles": {
                 "account": ["view-profile", "manage-account"]
             }
-        }, {
-            "username" : "corinnekrych",
-            "email" : "corinnek@mymail.com",
-            "enabled": true,
-            "firstName": "Corinne",
-            "lastName": "Krych",
-            "credentials" : [
-                { "type" : "password",
-                  "value" : "password" }
-            ],
-            "realmRoles": [ "user" ],
-            "applicationRoles": {
-                "account": ["view-profile", "manage-account"]
-            }
         }
     ],
     "scopeMappings" : [ {
