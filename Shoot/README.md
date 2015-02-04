@@ -1,38 +1,40 @@
 ## Shoot'nShare backend
-A simple example to demo OAuth2 authorization code grant with Keycloak.
 
+A simple example to demo OAuth2 authorization code grant with Keycloak.
 
 ### Pre-requisites
 
-* use [Keycloak Appliance Distribution (version 1.0.4.Final)](http://docs.jboss.org/keycloak/docs/1.0.4.Final/userguide/html/server-installation.html#Appliance_install) comes with a preconfigured Keycloak server (based on Wildfly). 
+Shoot'nShare backend uses [Keycloak](http://keycloak.jboss.org/) to authenticate or client apps, so we need deploy and configure the [Keycloak](http://keycloak.jboss.org/)
 
-* go to KEYCLOAK_APPLIANCE_HOME/Keycload/bin and start the server
-	
-	standalone.sh -b 0.0.0.0
-
-* open a browser to http://localhost:8080/auth/admin/index.html. You
-
-* import realm [configuration file](configuration/shoot-realm.json)
+1. Download [Keycloak Appliance Distribution (version 1.0.4.Final)](http://docs.jboss.org/keycloak/docs/1.0.4.Final/userguide/html/server-installation.html#Appliance_install)
+1. Start the server `KEYCLOAK_APPLIANCE_HOME/Keycload/bin/standalone.sh -b 0.0.0.0`
+1. Open [http://localhost:8080/auth/admin/index.html](http://localhost:8080/auth/admin/index.html)
+1. Login using _admin_ / _admin_
+1. Click on `Add realm`
+1. import this our [realm configuration file](configuration/shoot-realm.json)
 
 ### Build and Deploy
 
-	mvn clean install
-	mvn wildfly:deploy
+```
+mvn clean install
+mvn wildfly:deploy
+```
 
-To test iOS client go to [iOS cookbook Shoot recipe](https://github.com/aerogear/aerogear-ios-cookbook/tree/swift/Shoot)
-To test Android client go to [TODO]().
-To test Web client go to [TODO]().
-To test Cordova client go to [TODO]().
+### Using
+
+Upload an image using one of our Shoot and Share example app
+
+| Plataform  | Repository |
+|:----------:|:--------------------------------------------|
+| Android    | https://github.com/aerogear/aerogear-android-cookbook/tree/master/ShootAndShare |
+| iOS        | https://github.com/aerogear/aerogear-ios-cookbook/tree/master/Shoot             |
+| Cordova    | https://github.com/aerogear/aerogear-cordova-cookbook/tree/master/Shoot         |
 
 ### Application flow
 
-* go to http://localhost:8080/shoot/photos/
-* shoot redirect for login: user/password
-* open your device or simulator
-* choose a picture in camera roll
-* select share with Keycloak
-* in Shoot'nShare web-app, click on "Get latest!" button
-
+1. Go to [http://localhost:8080/shoot/photos/](http://localhost:8080/shoot/photos/)
+1. Login using _user_ / _password_
+1. See the picutres uploaded
 
 ![Shoot'nShare web-app](https://github.com/aerogear/aerogear-backend-cookbook/raw/master/Shoot/Shoot_web-app.png "Shoot web-app")
 
@@ -40,58 +42,58 @@ To test Cordova client go to [TODO]().
 
 #### Upload from your phone with OAuth2 client
 
-* In your keycloak realm ```configuration/shoot-realm.json```, create an application for your rest endpoint (your services)
-Here we define ```bearerOnly``` as this end-point will not be used for login, it does not offer any redirect urls, it is just a plain oauth2 service.
+In the keycloak realm `configuration/shoot-realm.json`, create an application for your rest endpoint (your services)
+Here we define `bearerOnly` as this end-point will not be used for login, it does not offer any redirect urls, it is just a plain OAuth2 service.
 
 ```
-    "applications" : [ {
-        "name" : "shoot-services",
-        "enabled" : true,
-        "bearerOnly" : true,
-        "publicClient" : true
-    },
+"applications" : [ {
+    "name" : "shoot-services",
+    "enabled" : true,
+    "bearerOnly" : true,
+    "publicClient" : true
+},
 ```
 
-You should also define a OAuht2 client, the name ```shoot-third-party``` should match your ```client_id``` in your iOS/Android client and the ```redirectUris``` is the ```redirect_uri```.
+You should also define a OAuht2 client, the name `shoot-third-party` should match your `client_id` in your client app and the `redirectUris` is the `redirect_uri`.
 
 ```
-    "oauthClients" : [ {
-        "name" : "shoot-third-party",
-        "redirectUris" : [ "org.aerogear.Shoot://oauth2Callback" ],
-        "webOrigins" : [ ],
-        "enabled" : true,
-        "publicClient" : true
-    } ]
+"oauthClients" : [ {
+    "name" : "shoot-third-party",
+    "redirectUris" : [ "org.aerogear.Shoot://oauth2Callback" ],
+    "webOrigins" : [ ],
+    "enabled" : true,
+    "publicClient" : true
+} ]
 ```
 
-* Define your services to list, upload, get images. Check ```src/main/java/org/jboss/aerogear/shoot/PhotoService.java```
+Define your services to list, upload, get images. (Check `src/main/java/org/jboss/aerogear/shoot/PhotoService.java`)
 
-* To secure your endpoints, user wildfly keyclaok adapter. This simple demo uses a "per war approach". Refer to [Keycloak adapters chapter for more details](http://docs.jboss.org/keycloak/docs/1.0-final/userguide/html/ch07.html)
-Go in ```src/main/webapp/WEB-INF/web.xml```
+To secure your endpoints, user wildfly Keyclaok adapter. This simple demo uses a "per war approach". Refer to [Keycloak adapters chapter for more details](http://docs.jboss.org/keycloak/docs/1.0-final/userguide/html/ch07.html)
+Go in `src/main/webapp/WEB-INF/web.xml`
 
 ```
-   <security-constraint>
-        <web-resource-collection>
-            <url-pattern>/rest/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>user</role-name>
-        </auth-constraint>
-    </security-constraint>
-
-    <login-config>
-        <auth-method>KEYCLOAK</auth-method>
-        <realm-name>shoot-realm</realm-name>
-    </login-config>
-
-    <security-role>
+<security-constraint>
+    <web-resource-collection>
+        <url-pattern>/rest/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
         <role-name>user</role-name>
-    </security-role>
+    </auth-constraint>
+</security-constraint>
+
+<login-config>
+    <auth-method>KEYCLOAK</auth-method>
+    <realm-name>shoot-realm</realm-name>
+</login-config>
+
+<security-role>
+    <role-name>user</role-name>
+</security-role>
 ```
 
 NOTE: For simplicity our demo does not use https BUT all OAuth2 protected REST points should be using SSL. If you are using WildFly or EAP follow this [link to enable HTTPS](https://docs.jboss.org/author/pages/viewpage.action?pageId=66322705) or consult your application server's documentation page.
 
-and use ```src/main/webapp/WEB-INF/keycloak.json```, you link your java endpoint with keyclaok realm application. Here the application is names ```shoot-services```
+and use `src/main/webapp/WEB-INF/keycloak.json`, you link your java endpoint with keyclaok realm application. Here the application is names `shoot-services`
 
 ```
 {
@@ -105,9 +107,7 @@ and use ```src/main/webapp/WEB-INF/keycloak.json```, you link your java endpoint
 
 #### View all users images in web-app
 
-* Secure web-app with Keycloak JS adapter
-
-The web=app is using angular, the ```webapp\photos\js\app.js``` loads the configuration file ```webapp\config\keycloak.json```.
+The web-app is using angular, the `webapp\photos\js\app.js` loads the configuration file `webapp\config\keycloak.json`.
 
 ```
 {
@@ -120,9 +120,9 @@ The web=app is using angular, the ```webapp\photos\js\app.js``` loads the config
 }
 ```
 
-where ```shoot-web``` matches an application define in realm ```configuration/shoot-realm.json```.
+where `shoot-web` matches an application define in realm `configuration/shoot-realm.json`.
 
-*  ```webapp\photos\js\app.js``` configures an auth intercepter. Each http calls will be intercepted and added relevant authorization headers. 
+`webapp\photos\js\app.js` configures an auth intercepter. Each http calls will be intercepted and added relevant authorization headers. 
 
 ```
 module.factory('authInterceptor', function($q, Auth) {
@@ -148,7 +148,7 @@ module.factory('authInterceptor', function($q, Auth) {
 
 #### Shoot-realm
 
-In your realm you have one web app ```shoot-web```, secure services endpoints ```shoot-services``` and one OAuth2 client ```shoot-third-party```.
+In your realm you have one web app `shoot-web`, secure services endpoints `shoot-services` and one OAuth2 client `shoot-third-party`.
 
 ![Shoot-realm](https://github.com/corinnekrych/aerogear-backend-cookbook/raw/master/Shoot/shoot-ream.png "Shoot-realm")
 
