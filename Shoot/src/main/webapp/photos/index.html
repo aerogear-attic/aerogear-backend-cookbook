@@ -21,8 +21,9 @@
 <body>
 
 
-<div ng-controller="GlobalCtrl" class="global container-fluid wrapper">
-    <div class="container-fluid header">
+<div ng-controller="GlobalCtrl">
+  
+    <div class="header">
         <div class="container">
             <div class="nav navbar-default header">
                 <div class="navbar-header">
@@ -36,8 +37,9 @@
             </div>
         </div>
     </div>
+
     <div class="container">
-        <div class="row carousel carousel-height">
+        <div class="carousel carousel-height">
             <carousel interval="3000" style="height: 300px;">
                 <slide ng-repeat="photo in photos" active="photo.active">
                     <img style="margin:auto;height: 300px" ng-src="{{photo.src}}">
@@ -48,35 +50,33 @@
                 </slide>
             </carousel>
         </div>
+
         <div class="row comments">
             <div class="col-md-12">
-                <h1>Welcome !</h1>
+                <h1>Welcome!</h1>
                 <blockquote>
                     <p>Shoot'nShare powered by AeroGear OAuth2 and Keycloak.</p>
-                    <p> AeroGear provides flexible and extensible libraries to simplify mobile development across platforms and cut common repetitive infrastructure tasks.
-                    </p>
+                    <p> AeroGear provides flexible and extensible libraries to simplify mobile development across platforms and cut common repetitive infrastructure tasks.</p>
                     <small><a href="http://aerogear.org">AeroGear Team</a>, Open Source libs</small>
                 </blockquote>
-            </div>
-       </div>
-    </div>
+            </div><!-- col-md-12 -->
+       </div><!-- row comments -->
+    </div><!-- container -->
 </div>
-<div class="container-fluid header">
-    <div class="container">
-        <div class="footer nav navbar-default" style="background-color: black">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <img style="height:30px;" src="../img/aerogear_logo.png">
-                </a>
-            </div>
-            <div class="navbar-right">
-                <a class="navbar-brand" href="#">
-                    <img style="height:30px" src="../img/redhat.svg">
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+<footer class="clearfix">
+  <div class="container">
+    <a href="http://aerogear.org">
+      <img src="../img/aerogear_logo.png" height="30">
+    </a>
+    <a href="http://redhat.com">
+      <img src="../img/redhat.svg" height="30">
+    </a>
+  </div><!-- container -->
+</footr>
 
 </body>
 </html>
