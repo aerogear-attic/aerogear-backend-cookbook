@@ -28,6 +28,9 @@
                 { "type" : "password",
                     "value" : "password" }
             ],
+            "requiredActions": [
+                "UPDATE_PASSWORD"
+            ],
             "realmRoles": [ "user" ],
             "applicationRoles": {
                 "account": ["view-profile", "manage-account"]
