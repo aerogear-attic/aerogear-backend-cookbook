@@ -4,7 +4,7 @@ A simple example to demo OAuth2 authorization code grant with Keycloak.
 
 ### Pre-requisites
 
-Shoot'nShare backend uses [Keycloak](http://keycloak.jboss.org/) to authenticate or client apps, so we need deploy and configure the [Keycloak](http://keycloak.jboss.org/)
+Shoot'nShare backend uses [Keycloak](http://keycloak.jboss.org/) to authenticate our client apps, so we need to deploy and configure the [Keycloak](http://keycloak.jboss.org/) server.
 
 1. Download [Keycloak Appliance Distribution (version 1.0.4.Final)](http://docs.jboss.org/keycloak/docs/1.0.4.Final/userguide/html/server-installation.html#Appliance_install)
 1. Start the server `KEYCLOAK_APPLIANCE_HOME/Keycload/bin/standalone.sh -b 0.0.0.0`
@@ -42,7 +42,7 @@ Upload an image using one of our Shoot and Share example app
 
 #### Upload from your phone with OAuth2 client
 
-In the keycloak realm `configuration/shoot-realm.json`, create an application for your rest endpoint (your services)
+In the Keycloak realm `configuration/shoot-realm.json`, create an application for your rest endpoint (your services)
 Here we define `bearerOnly` as this end-point will not be used for login, it does not offer any redirect urls, it is just a plain OAuth2 service.
 
 ```
@@ -68,7 +68,7 @@ You should also define a OAuht2 client, the name `shoot-third-party` should matc
 
 Define your services to list, upload, get images. (Check `src/main/java/org/jboss/aerogear/shoot/PhotoService.java`)
 
-To secure your endpoints, user wildfly Keyclaok adapter. This simple demo uses a "per war approach". Refer to [Keycloak adapters chapter for more details](http://docs.jboss.org/keycloak/docs/1.0-final/userguide/html/ch07.html)
+To secure your endpoints, user wildfly Keycloak adapter. This simple demo uses a "per war approach". Refer to [Keycloak adapters chapter for more details](http://docs.jboss.org/keycloak/docs/1.0-final/userguide/html/ch07.html)
 Go in `src/main/webapp/WEB-INF/web.xml`
 
 ```
@@ -93,7 +93,7 @@ Go in `src/main/webapp/WEB-INF/web.xml`
 
 NOTE: For simplicity our demo does not use https BUT all OAuth2 protected REST points should be using SSL. If you are using WildFly or EAP follow this [link to enable HTTPS](https://docs.jboss.org/author/pages/viewpage.action?pageId=66322705) or consult your application server's documentation page.
 
-and use `src/main/webapp/WEB-INF/keycloak.json`, you link your java endpoint with keyclaok realm application. Here the application is names `shoot-services`
+and use `src/main/webapp/WEB-INF/keycloak.json`, you link your java endpoint with Keycloak realm application. Here the application is names `shoot-services`
 
 ```
 {
