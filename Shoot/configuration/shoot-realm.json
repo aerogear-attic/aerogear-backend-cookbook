@@ -59,7 +59,7 @@
     }],
     "oauthClients" : [ {
         "name" : "shoot-third-party",
-        "redirectUris" : [ "org.aerogear.Shoot://oauth2Callback", "http://oauth2callback" ],
+        "redirectUris" : [ "org.aerogear.Shoot://oauth2Callback", "http://oauth2callback", "org.aerogear.shoot:/oauth2Callback" ],
         "webOrigins" : [ ],
         "enabled" : true,
         "publicClient" : true
