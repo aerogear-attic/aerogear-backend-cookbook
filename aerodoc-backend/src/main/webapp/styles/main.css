@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+body {
+    padding-top: 40px;
+}
+
+#map {
+    height: 400px;
+}
+
+.mapholder {
+  padding: 30px;
+}
