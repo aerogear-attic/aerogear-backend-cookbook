@@ -1,4 +1,4 @@
-# aerogear-aerodoc-backend  [![Build Status](https://travis-ci.org/aerogear/aerogear-aerodoc-backend.png)](https://travis-ci.org/aerogear/aerogear-aerodoc-backend)
+# aerogear-aerodoc-backend 
 
 This backend application is a showcase / quickstart part of Aerogear's UnifiedPush facilities.
 This Application shows how a business specific App can interact with [aerogear-unifiedpush-server](https://github.com/aerogear/aerogear-unifiedpush-server) . It shows how it can use the  [aerogear-unifiedpush-java-client](https://github.com/aerogear/aerogear-unifiedpush-java-client) to send Unified Messages to the push server.
