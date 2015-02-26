@@ -7,6 +7,7 @@ The AeroGear Backend cookbook is complementary to the client cookbooks. It holds
 - [Android cookbook](https://github.com/aerogear/aerogear-android-cookbook)
 - [JavaScript cookbook](https://github.com/aerogear/aerogear-js-cookbook)
 - [Cordova cookbook](https://github.com/edewit/aerogear-cordova-cookbook)
+- [Windows cookbook](https://github.com/aerogear/aerogear-windows-cookbook)
 
 Each recipe is a complete mobile app. The goal of the recipes is to show you how easily you can use  AeroGear libraries.  
 
