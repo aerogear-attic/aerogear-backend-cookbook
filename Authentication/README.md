@@ -35,3 +35,11 @@ curl -v \
 
      mvn clean install
      mvn wildfly:deploy
+
+### Deploy on OpenShift
+
+To follow the instructions below, you need [rhc](https://developers.openshift.com/en/managing-client-tools.html) installed.
+
+     rhc app create bacon jboss-wildfly-8
+
+The ```bacon``` demo app is then available in [OpenShift online](http://bacon-corinnekrych.rhcloud.com/rest/grocery/bacons).
