@@ -1,0 +1,38 @@
+{
+  "realm" : "otp-demo",
+  "enabled" : true,
+  "privateKey" : "MIICXAIBAAKBgQDmzVbY8Sk0PpS18+XyxmUjppJ89uxim6v7QaTi3un3oWYm8bsL5pYZKeJVw3MCC9P2R5aB7pxU7kQA36lfBSpKeav59pi2ujspY3D/XXKVN+vyRwF+lZHOT+6plhKAX+yWq306F3WBlGHcatudve48tyj7zCWsvOabPaGZkyMztQIDAQABAoGAa2FfpaFV9Uukbp8h/fjV92c5QlCznBEnS8e3yiHCIwcBet7+kkPe06hL+HDtoicUn8GgwaTdMRqFow5sQ5wolwllYv8aYiVV0R3nHcx0RRGsv7SFCnvOHNCam1Cv+OOKsBMa8VMtGTqtt9PmteJUItG2qgjudZfgeFb5M4BaFQECQQD+nRs/U6OtYzMRrgN4ACzaxNzJWxz2LYS9IwCeB6zp+eDyvtGvgT0oixZ7u68vnbkjqmAUaLvq2e8tatFBUmX1AkEA6A8LAjeODYHXaG/kXbntmWUZ9q3jI65mwGpaHKmyeiy+5Ejtst4OgSgZpyrMSI+f9sn/Uml0poH6ZL97Gyc+wQJAVGINHbfCjzxJOJrLW4HzW63S3ojr2ErNq0FmevlgPUsrWkgThm72rfEqymcxcD59lWxp21m6reL8ebjlERkV4QJAGhim+kbZGLfDS6FZoxinmZp/AvinFHomX/kVzSdgRNEHXpC8+mJyax/hUqVDd91+9bfdmJz3W0o+qFnINFODgQJBALWAuTfQw56sd9tA2KMetbhknQ1eHQsSym4nyjjt8GwXNELopoWf2mvgwc5+syD4F0mVWHoGnHPCnCLS94iI7g4=",
+  "publicKey" : "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDmzVbY8Sk0PpS18+XyxmUjppJ89uxim6v7QaTi3un3oWYm8bsL5pYZKeJVw3MCC9P2R5aB7pxU7kQA36lfBSpKeav59pi2ujspY3D/XXKVN+vyRwF+lZHOT+6plhKAX+yWq306F3WBlGHcatudve48tyj7zCWsvOabPaGZkyMztQIDAQAB",
+  "roles" : {  },
+  "requiredCredentials" : [ "totp", "password" ],
+  "users" : [ {
+    "username" : "user",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "credentials" : [ {
+      "type" : "password",
+      "value" : "password",
+      "temporary" : false
+    } ],
+    "requiredActions" : [ ],
+    "applicationRoles" : { }
+  } ],
+  "applicationScopeMappings" : {
+  },
+  "applications" : [ {
+    "name" : "otp-demo",
+    "baseUrl" : "/otp-demo/index.html",
+    "surrogateAuthRequired" : false,
+    "enabled" : true,
+    "secret" : "e7a65500-5757-4946-b309-73ebca655674",
+    "redirectUris" : [ "/otp-demo/*" ],
+    "webOrigins" : [ ],
+    "claims" : { }
+  } ],
+  "oauthClients" : [ ],
+  "browserSecurityHeaders" : {
+    "contentSecurityPolicy" : "frame-src 'self'",
+    "xFrameOptions" : "SAMEORIGIN"
+  }
+}

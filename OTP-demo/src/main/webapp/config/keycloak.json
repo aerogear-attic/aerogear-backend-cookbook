@@ -1,0 +1,10 @@
+{
+  "realm": "otp-demo",
+  "realm-public-key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDmzVbY8Sk0PpS18+XyxmUjppJ89uxim6v7QaTi3un3oWYm8bsL5pYZKeJVw3MCC9P2R5aB7pxU7kQA36lfBSpKeav59pi2ujspY3D/XXKVN+vyRwF+lZHOT+6plhKAX+yWq306F3WBlGHcatudve48tyj7zCWsvOabPaGZkyMztQIDAQAB",
+  "auth-server-url": "http://localhost:8080/auth",
+  "ssl-required": "external",
+  "resource": "otp-demo",
+  "credentials": {
+    "secret": "e7a65500-5757-4946-b309-73ebca655674"
+  }
+}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OTP demo</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+    <script src="/auth/js/keycloak.js"></script>
+    <script src="app.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <div ng-controller="GlobalCtrl">
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Logged in with OTP</h1>
+                <p>
+                    That is all for this demo, also have a look at
+                    <a href="https://github.com/aerogear/aerogear-otp-java">aerogear-otp-java</a> for server side integration.
+                </p>
+                <p><a class="btn btn-primary btn-lg" href="#" ng-click="logout()" role="button">Sign out</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
