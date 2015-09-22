@@ -3,10 +3,10 @@ AeroGear Backend Cookbook
 
 The AeroGear Backend cookbook is complementary to the client cookbooks. It holds all backend required to client recipes:
 
-- [iOS cookbook](https://github.com/aerogear/aerogear-ios-cookbook)
 - [Android cookbook](https://github.com/aerogear/aerogear-android-cookbook)
-- [JavaScript cookbook](https://github.com/aerogear/aerogear-js-cookbook)
 - [Cordova cookbook](https://github.com/aerogear/aerogear-cordova-cookbook)
+- [iOS cookbook](https://github.com/aerogear/aerogear-ios-cookbook)
+- [JavaScript cookbook](https://github.com/aerogear/aerogear-js-cookbook)
 - [Windows cookbook](https://github.com/aerogear/aerogear-windows-cookbook)
 
 Each recipe is a complete mobile app. The goal of the recipes is to show you how easily you can use  AeroGear libraries.  
@@ -21,11 +21,11 @@ Each recipe is a complete mobile app. The goal of the recipes is to show you how
 
 ## Table of content
 
-| Recipe 	| Client 	| Description| Language|
-| ------------- |:-------------| :-------------|:-----:|
-| [AeroDoc](https://github.com/aerogear/aerogear-aerodoc-ios) | [Android](https://github.com/aerogear/aerogear-aerodoc-android), [JavaScript](https://github.com/aerogear/aerogear-aerodoc-web), [iOS](https://github.com/aerogear/aerogear-aerodoc-ios), [Cordova](https://github.com/aerogear/aerogear-aerodoc-cordova) | Full exemple on how to register, received notification | Java  |
-| [Shoot](Shoot/README.md) | [iOS](https://github.com/aerogear/aerogear-ios-cookbook/blob/swift/Shoot/README.md) | Keycloak OAuth2 | Java, JavaScript |
-| [Authentication](Authentication/README.md) | [Android](https://github.com/aerogear/aerogear-android-cookbook/tree/master/src/org/jboss/aerogear/cookbook/authentication) [iOS](https://github.com/aerogear/aerogear-ios-cookbook/tree/master/Authentication) | Demo HTTP Basic/Digest authentication| Java  |
+| Recipe 	    | Client       | Description    | Language |
+| ------------- |:-------------| :--------------|:--------:|
+| [AeroDoc](aerodoc-backend) | [Android](https://github.com/aerogear/aerogear-android-cookbook/tree/master/AeroDoc), [Cordova](https://github.com/aerogear/aerogear-cordova-cookbook/tree/master/aerodoc-cordova), [iOS](https://github.com/aerogear/aerogear-ios-cookbook/tree/1.6.x/AeroDoc), [JavaScript](https://github.com/aerogear/aerogear-aerodoc-web) | Full exemple on how to register, received notification | Java  |
+| [Shoot](Shoot) | [Android](https://github.com/aerogear/aerogear-android-cookbook/tree/master/ShootAndShare), [Cordova](https://github.com/aerogear/aerogear-cordova-cookbook/tree/master/Shoot), [iOS](https://github.com/aerogear/aerogear-ios-cookbook/tree/master/SharedShoot) | Keycloak OAuth2 | Java, JavaScript |
+| [Authentication](Authentication/README.md) | [Android](https://github.com/aerogear/aerogear-android-cookbook//tree/master/AuthExamples), [iOS](https://github.com/aerogear/aerogear-ios-cookbook/tree/master/Authentication) | Demo HTTP Basic/Digest authentication | Java |
 
 ## Documentation
 
