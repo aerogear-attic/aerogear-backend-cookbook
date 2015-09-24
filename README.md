@@ -24,8 +24,9 @@ Each recipe is a complete mobile app. The goal of the recipes is to show you how
 | Recipe 	    | Client       | Description    | Language |
 | ------------- |:-------------| :--------------|:--------:|
 | [AeroDoc](aerodoc-backend) | [Android](https://github.com/aerogear/aerogear-android-cookbook/tree/master/AeroDoc), [Cordova](https://github.com/aerogear/aerogear-cordova-cookbook/tree/master/aerodoc-cordova), [iOS](https://github.com/aerogear/aerogear-ios-cookbook/tree/1.6.x/AeroDoc), [JavaScript](https://github.com/aerogear/aerogear-aerodoc-web) | Full exemple on how to register, received notification | Java  |
-| [Shoot](Shoot) | [Android](https://github.com/aerogear/aerogear-android-cookbook/tree/master/ShootAndShare), [Cordova](https://github.com/aerogear/aerogear-cordova-cookbook/tree/master/Shoot), [iOS](https://github.com/aerogear/aerogear-ios-cookbook/tree/master/SharedShoot) | Keycloak OAuth2 | Java, JavaScript |
+| [Shoot](Shoot) | [Android](https://github.com/aerogear/aerogear-android-cookbook/tree/master/ShootAndShare), [Cordova](https://github.com/aerogear/aerogear-cordova-cookbook/tree/master/Shoot), [iOS](https://github.com/aerogear/aerogear-ios-cookbook/tree/master/SharedShoot), [Windows](https://github.com/aerogear/aerogear-windows-cookbook/blob/master/Shoot/README.md) | Keycloak OAuth2 | Java, JavaScript |
 | [Authentication](Authentication/README.md) | [Android](https://github.com/aerogear/aerogear-android-cookbook//tree/master/AuthExamples), [iOS](https://github.com/aerogear/aerogear-ios-cookbook/tree/master/Authentication) | Demo HTTP Basic/Digest authentication | Java |
+| [OTP-demo](OTP-demo/README.md) | [Android](https://github.com/aerogear/aerogear-android-cookbook/blob/master/Two-Factor), [Cordova](https://github.com/aerogear/aerogear-cordova-cookbook/blob/master/otp-demo), [iOS](https://github.com/aerogear/aerogear-ios-cookbook/blob/master/Two-Factor), [Windows](https://github.com/aerogear/aerogear-windows-cookbook/blob/master/Two-Factor) | Demo OTP with Keycloak server. | JavaScript |
 
 ## Documentation
 
