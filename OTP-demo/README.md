@@ -6,8 +6,8 @@ A static page that uses keycloak otp to demo the otp clients
 
 This demo uses [Keycloak](http://keycloak.jboss.org/) to authenticate our client apps, so we need to deploy and configure the [Keycloak](http://keycloak.jboss.org/) server.
 
-1. Download [Keycloak Appliance Distribution (version 1.0.4.Final)](http://docs.jboss.org/keycloak/docs/1.0.4.Final/userguide/html/server-installation.html#Appliance_install)
-1. Start the server `KEYCLOAK_APPLIANCE_HOME/Keycloak/bin/standalone.sh -b 0.0.0.0`
+1. Download [Keycloak Demo Distribution (keycloak-demo-1.5.0.Final.zip)](http://www.redhat.com/j/elqNow/elqRedir.htm?ref=http://downloads.jboss.org/keycloak/1.5.0.Final/keycloak-demo-1.5.0.Final.zip)
+1. Start the server `KEYCLOAK_HOME/Keycloak/bin/standalone.sh -b 0.0.0.0`
 1. Open [http://localhost:8080/auth/admin/index.html](http://localhost:8080/auth/admin/index.html)
 1. Login using _admin_ / _admin_
 1. Click on `Add realm`
