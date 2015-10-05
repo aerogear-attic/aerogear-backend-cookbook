@@ -4,7 +4,7 @@ This backend application is a showcase / quickstart part of Aerogear's UnifiedPu
 This Application shows how a business specific App can interact with [aerogear-unifiedpush-server](https://github.com/aerogear/aerogear-unifiedpush-server) . It shows how it can use the  [aerogear-unifiedpush-java-client](https://github.com/aerogear/aerogear-unifiedpush-java-client) to send Unified Messages to the push server.
 
 # Description of the Application
-competitve 
+
 AeroDoc is a company in the health care industry, selling a revolutionary tensiometer. Their clients are doctors. AeroDoc has several sales agents all over the United States. At the headquarters, they have their "first line" sales departement, doing cold calls all along the day. As soon they have a concrete lead, they use their AeroDoc Admin app to filter out available sales Agents available in the lead area. They can then send them a push notification.
 
 The sales agent receives the notification on their mobile device that a new lead is available. The agent will handle the lead by "accepting" the notifcation, informing the other agents that the lead has been processed.
