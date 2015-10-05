@@ -9,7 +9,7 @@ AeroDoc is a company in the health care industry, selling a revolutionary tensio
 
 The sales agent receives the notification on their mobile device that a new lead is available. The agent will handle the lead by "accepting" the notifcation, informing the other agents that the lead has been processed.
 
-In this highly competitive market of the tensiometers, be able to process a lead directly is for sure a competitve advantage.
+In this highly competitive market of the tensiometers, be able to process a lead directly is for sure a competitive advantage.
 
 ## The client app
 
@@ -32,7 +32,7 @@ In this highly competitive market of the tensiometers, be able to process a lead
 * Status
 * Location
 
-3. The admin client can assign a lead to a selection (1..n) of sales agents, this will send out the nofitications.
+3. The admin client can assign a lead to a selection (1..n) of sales agents, this will send out the notifications.
 
 4. The admin client manage the Sales Agents DB.
 
@@ -58,7 +58,7 @@ In this highly competitive market of the tensiometers, be able to process a lead
 
 ## aerogear-unifiedpush-server
 
-Be sure to have a running instance of a Push Server. Intructions can be found [here](https://github.com/aerogear/aerogear-unifiedpush-server).
+Be sure to have a running instance of a Push Server. Instructions can be found [here](https://github.com/aerogear/aerogear-unifiedpush-server).
 
 ## Clients
 
