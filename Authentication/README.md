@@ -42,4 +42,4 @@ To follow the instructions below, you need [rhc](https://developers.openshift.co
 
      rhc app create bacon jboss-wildfly-8
 
-The ```bacon``` demo app is then available in [OpenShift online](http://bacon-corinnekrych.rhcloud.com/rest/grocery/bacons).
+The ```bacon``` demo app is then available in [OpenShift online](http://bacon-aerogear.rhcloud.com/authentication/rest/grocery/bacons).
