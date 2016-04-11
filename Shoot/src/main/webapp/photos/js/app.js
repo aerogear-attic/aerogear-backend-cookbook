@@ -16,7 +16,7 @@ angular.element(document).ready(function ($http) {
     keycloakAuth.init({ onLoad: 'login-required' }).success(function () {
         auth.loggedIn = true;
         auth.authz = keycloakAuth;
-        auth.logoutUrl = keycloakAuth.authServerUrl + "/realms/shoot-realm/tokens/logout?redirect_uri=/shoot/photos/index.html";
+        auth.logoutUrl = keycloakAuth.authServerUrl + "/realms/shoot-realm/protocol/openid-connect/logout?redirect_uri=/shoot/photos/index.html";
         module.factory('Auth', function() {
             return auth;
         });
