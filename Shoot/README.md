@@ -6,7 +6,7 @@ A simple example to demo OAuth2 authorization code grant with Keycloak.
 
 Shoot'nShare backend uses [Keycloak](http://keycloak.jboss.org/) to authenticate our client apps, so we need to deploy and configure the [Keycloak](http://keycloak.jboss.org/) server.
 
-1. Download [Keycloak Demo Distribution (keycloak-demo-1.5.0.Final.zip)](http://www.redhat.com/j/elqNow/elqRedir.htm?ref=http://downloads.jboss.org/keycloak/1.5.0.Final/keycloak-demo-1.5.0.Final.zip)
+1. Download [Keycloak Demo Distribution (keycloak-demo-1.9.1.Final.zip)](http://www.redhat.com/j/elqNow/elqRedir.htm?ref=http://downloads.jboss.org/keycloak/1.9.1.Final/keycloak-demo-1.9.1.Final.zip)
 1. Start the server `KEYCLOAK_HOME/Keycloak/bin/standalone.sh -b 0.0.0.0`
 1. Open [http://localhost:8080/auth/admin/index.html](http://localhost:8080/auth/admin/index.html)
 1. Login using _admin_ / _admin_
@@ -99,6 +99,7 @@ and use `src/main/webapp/WEB-INF/keycloak.json`, you link your java endpoint wit
 {
     "realm": "shoot-realm",
     "realm-public-key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCUgrGF7rNIYRSWCZlT+JXGtjZtnn8/ZObzW12YSoRBUJ0mm6wzO6p8+aQYMXvtvB88zeWBD9+uZh8gWj+iOqByWCfX0Wez+mVK8ofhAsGniv631u+wmDESLrLvROX12r1fzmmVJYWOzEGW4v2Xmahl/6gHnzV0mHZfmJXEOniHqwIDAQAB",
+    "auth-server-url": "/auth",
     "bearer-only": true,
     "ssl-required": "external",
     "resource": "shoot-services"
