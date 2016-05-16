@@ -16,12 +16,11 @@
  */
 package org.jboss.aerogear.aerodoc.model;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 import org.picketlink.idm.model.annotation.AttributeProperty;
 import org.picketlink.idm.model.basic.Agent;
-
-import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
 
 @XmlRootElement
 @JsonIgnoreProperties({"attributes","partition"})

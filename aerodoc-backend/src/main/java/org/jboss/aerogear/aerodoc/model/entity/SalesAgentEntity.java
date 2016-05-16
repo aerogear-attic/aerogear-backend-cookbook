@@ -16,6 +16,7 @@
  */
 package org.jboss.aerogear.aerodoc.model.entity;
 
+import javax.persistence.Entity;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.Latitude;
 import org.hibernate.search.annotations.Longitude;
@@ -24,8 +25,6 @@ import org.jboss.aerogear.aerodoc.model.SaleAgent;
 import org.picketlink.idm.jpa.annotations.AttributeValue;
 import org.picketlink.idm.jpa.annotations.entity.IdentityManaged;
 import org.picketlink.idm.model.annotation.Unique;
-
-import javax.persistence.Entity;
 
 /**
  * Created with IntelliJ IDEA. User: pedroigor Date: 8/26/13 Time: 10:13 AM To change this template use File | Settings

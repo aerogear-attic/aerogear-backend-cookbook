@@ -17,7 +17,6 @@
 package org.jboss.aerogear.aerodoc.model;
 
 import java.io.Serializable;
-import java.lang.String;
 import javax.persistence.*;
 
 /**

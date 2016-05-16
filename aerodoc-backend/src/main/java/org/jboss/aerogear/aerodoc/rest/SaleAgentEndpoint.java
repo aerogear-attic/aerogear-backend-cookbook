@@ -16,17 +16,7 @@
  */
 package org.jboss.aerogear.aerodoc.rest;
 
-import org.hibernate.search.jpa.FullTextEntityManager;
-import org.hibernate.search.jpa.Search;
-import org.hibernate.search.query.dsl.QueryBuilder;
-import org.hibernate.search.query.dsl.Unit;
-import org.jboss.aerogear.aerodoc.config.RequiresAccount;
-import org.jboss.aerogear.aerodoc.model.SaleAgent;
-import org.jboss.aerogear.aerodoc.model.entity.SalesAgentEntity;
-import org.picketlink.idm.IdentityManager;
-import org.picketlink.idm.model.IdentityType;
-import org.picketlink.idm.query.IdentityQuery;
-
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -49,7 +39,16 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
-import java.util.List;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.jpa.Search;
+import org.hibernate.search.query.dsl.QueryBuilder;
+import org.hibernate.search.query.dsl.Unit;
+import org.jboss.aerogear.aerodoc.config.RequiresAccount;
+import org.jboss.aerogear.aerodoc.model.SaleAgent;
+import org.jboss.aerogear.aerodoc.model.entity.SalesAgentEntity;
+import org.picketlink.idm.IdentityManager;
+import org.picketlink.idm.model.IdentityType;
+import org.picketlink.idm.query.IdentityQuery;
 
 /**
  *
@@ -161,7 +160,6 @@ public class SaleAgentEndpoint {
           .buildQueryBuilder().forEntity( SalesAgentEntity.class ).get();
 
       org.apache.lucene.search.Query luceneQuery = builder.spatial()
-          .onDefaultCoordinates()
           .within(radius, Unit.KM)
           .ofLatitude(latitude)
           .andLongitude(longitude)

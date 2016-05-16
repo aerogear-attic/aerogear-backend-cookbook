@@ -18,7 +18,6 @@
 package org.jboss.aerogear.aerodoc.rest;
 
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -35,7 +34,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
-
 import org.jboss.aerogear.aerodoc.config.RequiresAccount;
 import org.jboss.aerogear.aerodoc.model.PushConfig;
 

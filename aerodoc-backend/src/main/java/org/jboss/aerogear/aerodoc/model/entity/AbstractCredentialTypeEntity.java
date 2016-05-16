@@ -17,17 +17,16 @@
  */
 package org.jboss.aerogear.aerodoc.model.entity;
 
-import org.picketlink.idm.jpa.annotations.CredentialClass;
-import org.picketlink.idm.jpa.annotations.EffectiveDate;
-import org.picketlink.idm.jpa.annotations.ExpiryDate;
-import org.picketlink.idm.jpa.annotations.OwnerReference;
-
+import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-import java.io.Serializable;
-import java.util.Date;
+import org.picketlink.idm.jpa.annotations.CredentialClass;
+import org.picketlink.idm.jpa.annotations.EffectiveDate;
+import org.picketlink.idm.jpa.annotations.ExpiryDate;
+import org.picketlink.idm.jpa.annotations.OwnerReference;
 
 /**
  * <p>Base mapping for credentials.</p>

@@ -1,5 +1,10 @@
 package org.jboss.aerogear.aerodoc.idm;
 
+import javax.enterprise.event.Observes;
+import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.jboss.aerogear.aerodoc.idm.credential.UserPasswordCredentialHandler;
 import org.jboss.aerogear.aerodoc.model.entity.AttributeTypeEntity;
 import org.jboss.aerogear.aerodoc.model.entity.GroupTypeEntity;
@@ -14,12 +19,6 @@ import org.picketlink.annotations.PicketLink;
 import org.picketlink.event.IdentityConfigurationEvent;
 import org.picketlink.idm.config.IdentityConfigurationBuilder;
 import org.picketlink.internal.EEJPAContextInitializer;
-
-import javax.enterprise.event.Observes;
-import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 public class PicketLinkConfiguration {
 

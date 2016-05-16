@@ -17,18 +17,16 @@
  */
 package org.jboss.aerogear.aerodoc.idm.credential;
 
+import java.util.Collections;
+import java.util.List;
 import org.jboss.aerogear.aerodoc.model.SaleAgent;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.credential.UsernamePasswordCredentials;
 import org.picketlink.idm.credential.handler.PasswordCredentialHandler;
 import org.picketlink.idm.model.Account;
 import org.picketlink.idm.model.basic.Agent;
-import org.picketlink.idm.model.basic.User;
 import org.picketlink.idm.query.IdentityQuery;
 import org.picketlink.idm.spi.IdentityContext;
-
-import java.util.Collections;
-import java.util.List;
 
 /**
  * <p>Custom {@link PasswordCredentialHandler} that knows how to handle {@link SaleAgent} types.</p>

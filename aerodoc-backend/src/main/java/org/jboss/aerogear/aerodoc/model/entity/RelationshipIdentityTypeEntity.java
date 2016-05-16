@@ -17,15 +17,14 @@
  */
 package org.jboss.aerogear.aerodoc.model.entity;
 
-import org.picketlink.idm.jpa.annotations.OwnerReference;
-import org.picketlink.idm.jpa.annotations.RelationshipDescriptor;
-import org.picketlink.idm.jpa.annotations.RelationshipMember;
-
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import java.io.Serializable;
+import org.picketlink.idm.jpa.annotations.OwnerReference;
+import org.picketlink.idm.jpa.annotations.RelationshipDescriptor;
+import org.picketlink.idm.jpa.annotations.RelationshipMember;
 
 /**
  * @author pedroigor

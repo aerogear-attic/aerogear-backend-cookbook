@@ -17,13 +17,12 @@
  */
 package org.jboss.aerogear.aerodoc.model.entity;
 
+import javax.persistence.Entity;
 import org.picketlink.idm.jpa.annotations.AttributeValue;
 import org.picketlink.idm.jpa.annotations.PartitionClass;
 import org.picketlink.idm.jpa.annotations.entity.ConfigurationName;
 import org.picketlink.idm.jpa.annotations.entity.IdentityManaged;
 import org.picketlink.idm.model.Partition;
-
-import javax.persistence.Entity;
 
 /**
  * @author pedroigor
