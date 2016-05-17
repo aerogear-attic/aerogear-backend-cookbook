@@ -16,21 +16,18 @@
  */
 package org.jboss.aerogear.aerodoc.config;
 
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
+import javax.inject.Inject;
 import org.jboss.aerogear.aerodoc.model.SaleAgent;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.PartitionManager;
 import org.picketlink.idm.RelationshipManager;
 import org.picketlink.idm.credential.Password;
-import org.picketlink.idm.model.basic.Agent;
-import org.picketlink.idm.model.basic.BasicModel;
-import org.picketlink.idm.model.basic.Role;
-
-import javax.annotation.PostConstruct;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.inject.Inject;
-import java.util.List;
 import static org.picketlink.idm.model.basic.BasicModel.grantRole;
+import org.picketlink.idm.model.basic.Role;
 
 @Singleton
 @Startup

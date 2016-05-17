@@ -17,13 +17,12 @@
  */
 package org.jboss.aerogear.aerodoc.model.entity;
 
-import org.picketlink.idm.jpa.annotations.Identifier;
-
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import java.io.Serializable;
+import org.picketlink.idm.jpa.annotations.Identifier;
 
 /**
  * @author pedroigor

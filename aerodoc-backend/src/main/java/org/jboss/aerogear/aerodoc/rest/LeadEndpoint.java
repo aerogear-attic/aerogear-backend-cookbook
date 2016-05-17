@@ -16,10 +16,9 @@
  */
 package org.jboss.aerogear.aerodoc.rest;
 
-import org.jboss.aerogear.aerodoc.config.RequiresAccount;
-import org.jboss.aerogear.aerodoc.model.Lead;
-import org.jboss.aerogear.aerodoc.service.LeadSender;
-
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -29,9 +28,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
+import org.jboss.aerogear.aerodoc.config.RequiresAccount;
+import org.jboss.aerogear.aerodoc.model.Lead;
+import org.jboss.aerogear.aerodoc.service.LeadSender;
 
 /**
  * 

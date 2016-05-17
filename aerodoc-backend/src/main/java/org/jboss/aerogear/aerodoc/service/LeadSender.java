@@ -18,16 +18,13 @@ package org.jboss.aerogear.aerodoc.service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.inject.Inject;
-
 import org.jboss.aerogear.aerodoc.model.Lead;
 import org.jboss.aerogear.aerodoc.model.PushConfig;
 import org.jboss.aerogear.aerodoc.rest.PushConfigEndpoint;
-import org.jboss.aerogear.unifiedpush.JavaSender;
-import org.jboss.aerogear.unifiedpush.SenderClient;
+import org.jboss.aerogear.unifiedpush.DefaultPushSender;
+import org.jboss.aerogear.unifiedpush.PushSender;
 import org.jboss.aerogear.unifiedpush.message.MessageResponseCallback;
 import org.jboss.aerogear.unifiedpush.message.UnifiedMessage;
 
@@ -38,7 +35,7 @@ public class LeadSender {
     @Inject
     PushConfigEndpoint pushConfigEndpoint;
 
-    private JavaSender javaSender;
+    private PushSender javaSender;
 
     public LeadSender() {
 
@@ -46,20 +43,23 @@ public class LeadSender {
 
     public void sendLeads(List<String> users, Lead lead) {
         System.setProperty("jsse.enableSNIExtension", "false");
-        javaSender = new SenderClient.Builder(getActivePushConfig().getServerURL()).build();
+        javaSender = DefaultPushSender.withRootServerURL(getActivePushConfig().getServerURL()).pushApplicationId(getActivePushConfig().getPushApplicationId())
+                        .masterSecret(getActivePushConfig()
+                        .getMasterSecret()).build();
         if (getActivePushConfig() != null) {
-            UnifiedMessage unifiedMessage = new UnifiedMessage.Builder()
-                    .pushApplicationId(getActivePushConfig().getPushApplicationId())
-                    .masterSecret(getActivePushConfig().getMasterSecret())
-                    .categories("lead")
-                    .actionCategory("acceptLead")
-                    .aliases(users)
-                    .simplePush("version=" + new Date().getTime())
-                    .attribute("id", lead.getId().toString())
-                    .attribute("messageType", "pushed_lead")
-                    .attribute("name", lead.getName())
-                    .attribute("location", lead.getLocation())
-                    .attribute("phone", lead.getPhoneNumber()).sound("default")
+            UnifiedMessage unifiedMessage = UnifiedMessage.withMessage()
+                    .criteria()
+                        .categories("lead")
+                        .aliases(users)
+                    .message()
+                        .apns().actionCategory("acceptLead")
+                    .build()
+                        .simplePush("version=" + new Date().getTime())
+                    .userData("id", lead.getId().toString())
+                    .userData("messageType", "pushed_lead")
+                    .userData("name", lead.getName())
+                    .userData("location", lead.getLocation())
+                    .userData("phone", lead.getPhoneNumber()).sound("default")
                     .alert("A new lead has been created").build();
 
             javaSender.send(unifiedMessage, new LeadSenderMessageResponseCallback());
@@ -70,18 +70,19 @@ public class LeadSender {
     }
 
     public void sendBroadCast(Lead lead) {
-        javaSender = new SenderClient.Builder(getActivePushConfig().getServerURL()).build();
+        javaSender = DefaultPushSender.withRootServerURL(getActivePushConfig().getServerURL())
+                        .pushApplicationId(getActivePushConfig().getPushApplicationId())
+                        .masterSecret(getActivePushConfig().getMasterSecret()).build();
         if (getActivePushConfig() != null) {
-            UnifiedMessage unifiedMessage = new UnifiedMessage.Builder()
-                    .pushApplicationId(getActivePushConfig().getPushApplicationId())
-                    .masterSecret(getActivePushConfig().getMasterSecret())
-                    .attribute("id", lead.getId().toString())
-                    .attribute("messageType", "pushed_lead")
+            UnifiedMessage unifiedMessage = UnifiedMessage.withMessage()
+                    
+                    .userData("id", lead.getId().toString())
+                    .userData("messageType", "pushed_lead")
                     .simplePush("version=" + new Date().getTime())
-                    .attribute("name", lead.getName())
-                    .attribute("location", lead.getLocation())
-                    .attribute("phone", lead.getPhoneNumber())
-                    .attribute("messageType", "accepted_lead").sound("default")
+                    .userData("name", lead.getName())
+                    .userData("location", lead.getLocation())
+                    .userData("phone", lead.getPhoneNumber())
+                    .userData("messageType", "accepted_lead").sound("default")
                     .alert("A new lead has been accepted").build();
 
             javaSender.send(unifiedMessage, new LeadSenderMessageResponseCallback());
@@ -91,11 +92,11 @@ public class LeadSender {
         }
     }
 
-    public JavaSender getJavaSender() {
+    public PushSender getJavaSender() {
         return javaSender;
     }
 
-    public void setJavaSender(JavaSender javaSender) {
+    public void setJavaSender(PushSender javaSender) {
         this.javaSender = javaSender;
     }
 
@@ -105,23 +106,17 @@ public class LeadSender {
 
     }
 
-
     /**
-     * Simple, stateless innerclass, that implements logger for the callbacks of the
-     * MessageResponseCallback class.
+     * Simple, stateless innerclass, that implements logger for the callbacks of
+     * the MessageResponseCallback class.
      */
     private static class LeadSenderMessageResponseCallback implements MessageResponseCallback {
+
         @Override
-        public void onComplete(int statusCode) {
+        public void onComplete() {
             logger.info("Message submitted");
         }
 
-        @Override
-        public void onError(Throwable throwable) {
-            logger.log(Level.SEVERE, "An error occurred", throwable);
-        }
-
     }
-
 
 }

@@ -16,11 +16,11 @@
  */
 package org.jboss.aerogear.aerodoc.config;
 
-import org.apache.deltaspike.security.api.authorization.Secures;
-import org.picketlink.Identity;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import org.apache.deltaspike.security.api.authorization.Secures;
+import org.picketlink.Identity;
 
 /**
  * <p>This class centralizes all authorization services for this application.</p>

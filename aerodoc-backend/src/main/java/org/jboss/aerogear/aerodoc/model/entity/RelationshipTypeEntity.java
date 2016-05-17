@@ -17,11 +17,10 @@
  */
 package org.jboss.aerogear.aerodoc.model.entity;
 
+import javax.persistence.Entity;
 import org.picketlink.idm.jpa.annotations.RelationshipClass;
 import org.picketlink.idm.jpa.annotations.entity.IdentityManaged;
 import org.picketlink.idm.model.Relationship;
-
-import javax.persistence.Entity;
 
 /**
  * @author pedroigor

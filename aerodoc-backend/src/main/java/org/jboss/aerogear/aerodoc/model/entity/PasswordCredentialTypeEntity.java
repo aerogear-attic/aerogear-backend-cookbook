@@ -17,11 +17,10 @@
  */
 package org.jboss.aerogear.aerodoc.model.entity;
 
+import javax.persistence.Entity;
 import org.picketlink.idm.credential.storage.EncodedPasswordStorage;
 import org.picketlink.idm.jpa.annotations.CredentialProperty;
 import org.picketlink.idm.jpa.annotations.entity.ManagedCredential;
-
-import javax.persistence.Entity;
 
 /**
  * <p>This entity is mapped to support Password credential types using a {@link org.picketlink.idm.credential.storage.EncodedPasswordStorage}.</p>

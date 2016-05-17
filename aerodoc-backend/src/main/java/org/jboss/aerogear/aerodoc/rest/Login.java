@@ -16,13 +16,8 @@
  */
 package org.jboss.aerogear.aerodoc.rest;
 
-import org.jboss.aerogear.aerodoc.config.RequiresAccount;
-import org.jboss.aerogear.aerodoc.model.SaleAgent;
-import org.picketlink.Identity;
-import org.picketlink.Identity.AuthenticationResult;
-import org.picketlink.credential.DefaultLoginCredentials;
-import org.picketlink.idm.IdentityManager;
-
+import java.util.List;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -31,8 +26,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
-import java.util.logging.Logger;
+import org.jboss.aerogear.aerodoc.config.RequiresAccount;
+import org.jboss.aerogear.aerodoc.model.SaleAgent;
+import org.picketlink.Identity;
+import org.picketlink.Identity.AuthenticationResult;
+import org.picketlink.credential.DefaultLoginCredentials;
+import org.picketlink.idm.IdentityManager;
 
 @Stateless
 @Path("/")
