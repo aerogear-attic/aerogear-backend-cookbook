@@ -10,11 +10,12 @@ A simple JAX-RS example that uses [Picketlink](http://picketlink.org) to demo HT
 
 ### Build and run locally
 
+> Note: Wildfly should be installed and running prior to your local deployment.
+
 ```shell
 mvn clean install
 mvn wildfly:deploy
 ```
-> Note: Wildfly should be installed and running prior to your local deployment.
 
 ### Deploy on OpenShift
 
@@ -37,7 +38,7 @@ git commit -a -m 'Deploying app'
 git push
 ```
 
-* Go to http://bacon-YOUR_OPENSHIFT>.rhcloud.com/rest/grocery/bacons
+* Go to http://bacon-<YOUR_OPENSHIFT>.rhcloud.com/rest/grocery/bacons
 to see your app deployed. 
 For example: http://bacon-corinnekrych.rhcloud.com/rest/grocery/bacons
 
