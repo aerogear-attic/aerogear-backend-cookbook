@@ -14,13 +14,41 @@ A simple JAX-RS example that uses [Picketlink](http://picketlink.org) to demo HT
 mvn clean install
 mvn wildfly:deploy
 ```
+> Note: Wildfly should be installed and running prior to your local deployment.
 
 ### Deploy on OpenShift
 
 > To follow the instructions below, you need [rhc](https://developers.openshift.com/en/managing-client-tools.html) installed.
 
+* In your workspace directory, create a openShift app as balow: 
+
 ```shell
 rhc app create bacon jboss-wildfly-8
+```
+
+The command should have created a `bacon` folder.
+
+* Copy the content of `Authentication` into `bacon`
+
+* Commit and push your changes as below:
+
+```shell
+git commit -a -m 'Deploying app'
+git push
+```
+
+* Go to http://bacon-YOUR_OPENSHIFT>.rhcloud.com/rest/grocery/bacons
+to see your app deployed. 
+For example: http://bacon-corinnekrych.rhcloud.com/rest/grocery/bacons
+
+* Test it via curl:
+```shell
+curl -v \
+     -H "Accept: application/json" \
+     -H "Content-type: application/json" \
+     -c cookie -b cookie \
+     --digest -u "agnes:123" \
+     -X GET http://bacon-corinnekrych.rhcloud.com/rest/grocery/bacons
 ```
 
 ## Client apps
