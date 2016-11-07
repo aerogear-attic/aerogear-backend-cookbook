@@ -20,7 +20,7 @@ mvn wildfly:deploy
 
 > To follow the instructions below, you need [rhc](https://developers.openshift.com/en/managing-client-tools.html) installed.
 
-* In your workspace directory, create a openShift app as balow: 
+* In your workspace directory, create a openShift app as below: 
 
 ```shell
 rhc app create bacon jboss-wildfly-8
