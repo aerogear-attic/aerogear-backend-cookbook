@@ -10,46 +10,11 @@ A simple JAX-RS example that uses [Picketlink](http://picketlink.org) to demo HT
 
 ### Build and run locally
 
-> Note: Wildfly should be installed and running prior to your local deployment.
+> Note: Wildfly Swarm is used to run the application, port 8080 should be free.
 
 ```shell
 mvn clean install
-mvn wildfly:deploy
-```
-
-### Deploy on OpenShift
-
-> To follow the instructions below, you need [rhc](https://developers.openshift.com/en/managing-client-tools.html) installed.
-
-* In your workspace directory, create a openShift app as below: 
-
-```shell
-rhc app create bacon jboss-wildfly-8
-```
-
-The command should have created a `bacon` folder.
-
-* Copy the content of `Authentication` into `bacon`
-
-* Commit and push your changes as below:
-
-```shell
-git commit -a -m 'Deploying app'
-git push
-```
-
-* Go to http://bacon-<YOUR_OPENSHIFT>.rhcloud.com/rest/grocery/bacons
-to see your app deployed. 
-For example: http://bacon-corinnekrych.rhcloud.com/rest/grocery/bacons
-
-* Test it via curl:
-```shell
-curl -v \
-     -H "Accept: application/json" \
-     -H "Content-type: application/json" \
-     -c cookie -b cookie \
-     --digest -u "agnes:123" \
-     -X GET http://bacon-corinnekrych.rhcloud.com/rest/grocery/bacons
+mvn wildfly-swarm:run
 ```
 
 ## Client apps
@@ -71,7 +36,7 @@ curl -v \
      -H "Content-type: application/json" \
      -c cookie -b cookie \
      --digest -u "agnes:123" \
-     -X GET http://localhost:8080/authentication/rest/grocery/bacons
+     -X GET http://localhost:8080/rest/grocery/bacons
 ```
 
 ### HTTP Basic - GET /rest/grocery/beers
@@ -84,5 +49,5 @@ curl -v \
      -H "Content-type: application/json" \
      -c cookie -b cookie \
      -u "john:123" \
-     -X GET http://localhost:8080/authentication/rest/grocery/beers
+     -X GET http://localhost:8080/rest/grocery/beers
 ```

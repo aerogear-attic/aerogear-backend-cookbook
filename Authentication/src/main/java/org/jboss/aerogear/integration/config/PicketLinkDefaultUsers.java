@@ -18,17 +18,18 @@ package org.jboss.aerogear.integration.config;
 
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.PartitionManager;
-import org.picketlink.idm.RelationshipManager;
 import org.picketlink.idm.credential.Digest;
 import org.picketlink.idm.credential.Password;
 import org.picketlink.idm.model.basic.User;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Initialized;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
-@Singleton
+@ApplicationScoped
 @Startup
 public class PicketLinkDefaultUsers {
 
@@ -36,13 +37,11 @@ public class PicketLinkDefaultUsers {
     private PartitionManager partitionManager;
 
     private IdentityManager identityManager;
-    private RelationshipManager relationshipManager;
 
     @PostConstruct
-    public void create() {
+    public void init(@Observes @Initialized(ApplicationScoped.class) Object init) {
 
         this.identityManager = partitionManager.createIdentityManager();
-        this.relationshipManager = partitionManager.createRelationshipManager();
 
         User john = newUser("john", "john@doe.com", "John", "Doe");
         this.identityManager.updateCredential(john, new Password("123"));
