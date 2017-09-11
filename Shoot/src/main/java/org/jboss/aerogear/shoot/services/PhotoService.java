@@ -18,9 +18,6 @@ package org.jboss.aerogear.shoot.services;
 
 import org.jboss.aerogear.shoot.model.Photo;
 import org.jboss.aerogear.shoot.utils.Utils;
-import org.jboss.resteasy.plugins.providers.multipart.InputPart;
-import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
-import org.jboss.resteasy.util.Base64;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -36,6 +33,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
@@ -90,7 +88,7 @@ public class PhotoService {
 
         Response.ResponseBuilder response = null;
         try {
-            response = Response.ok(Base64.encodeBytes(Files.readAllBytes(Paths.get(SERVER_UPLOAD_LOCATION_FOLDER + filename))));
+            response = Response.ok(Base64.getEncoder().encode(Files.readAllBytes(Paths.get(SERVER_UPLOAD_LOCATION_FOLDER + filename))));
         } catch (IOException e) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
