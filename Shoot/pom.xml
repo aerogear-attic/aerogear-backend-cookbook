@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.jboss.aerogear</groupId>
         <artifactId>aerogear-parent</artifactId>
-        <version>0.2.10</version>
+        <version>0.2.20</version>
     </parent>
 
     <groupId>org.jboss.aerogear</groupId>
@@ -51,7 +51,7 @@
 
     <properties>
         <!-- WildFly swarm versions -->
-        <version.wildfly.swarm>2017.6.1</version.wildfly.swarm>
+        <version.wildfly.swarm>2017.9.4</version.wildfly.swarm>
         <!-- maven-war-plugin -->
         <version.war.plugin>2.1.1</version.war.plugin>
         <!-- maven-compiler-plugin -->
@@ -103,6 +103,12 @@
             <groupId>org.wildfly.swarm</groupId>
             <artifactId>jaxrs</artifactId>
         </dependency>
+        
+        <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>jaxrs-multipart</artifactId>
+        </dependency>
+        
     </dependencies>
 
     <build>

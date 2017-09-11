@@ -7,7 +7,7 @@ ENV M2_HOME /opt/jboss/tools/maven
 ENV PATH $JAVA_HOME/bin:$M2_HOME/bin:$PATH
 
 
-ENV KEYCLOAK_VERSION 1.9.1.Final
+ENV KEYCLOAK_VERSION 3.3.0.Final
 ENV KEYCLOAK_HOME /opt/jboss/keycloak
 RUN cd $HOME \ 
   && curl -O http://downloads.jboss.org/keycloak/$KEYCLOAK_VERSION/keycloak-demo-$KEYCLOAK_VERSION.tar.gz \
