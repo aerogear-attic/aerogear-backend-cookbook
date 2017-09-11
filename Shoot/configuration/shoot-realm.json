@@ -65,7 +65,7 @@
         "publicClient" : true
     }, {
         "name" : "sharedshoot-third-party",
-        "redirectUris" : [ "org.aerogear.SharedShoot://oauth2Callback", "http://oauth2callback" ],
+        "redirectUris" : [ "org.aerogear.sharedshoot://oauth2Callback", "http://oauth2callback" ],
         "webOrigins" : [ ],
         "claims" : {
             "name" : true,
