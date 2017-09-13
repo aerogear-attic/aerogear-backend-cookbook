@@ -6,26 +6,16 @@ A simple example to demo OAuth2 authorization code grant with [Keycloak](http://
 
 ## How do I run it?
 
-### Pre-requisites
+### Local Docker
 
-Shoot'nShare backend uses [Keycloak](http://keycloak.jboss.org/) to authenticate our client apps, so we need to deploy and configure the [Keycloak](http://keycloak.jboss.org/) server.
-
-1. Download and extract [Keycloak Demo Distribution 2.4.0.Final](https://downloads.jboss.org/keycloak/2.4.0.Final/keycloak-demo-2.4.0.Final.zip)
-1. Add an admin user `KEYCLOAK_HOME/Keycloak/bin/add-user-keycloak.[sh|bat] -r master -u admin -p admin`
-1. Start the server `KEYCLOAK_HOME/Keycloak/bin/standalone.sh -b 0.0.0.0`
-1. Open [http://localhost:8080/auth/admin](http://localhost:8080/auth/admin)
-1. Login using _admin_ / _admin_
-1. Click on `Add realm`
-1. import this our [realm configuration file](configuration/shoot-realm.json)
-
-### Build and Deploy
-
-```shell
-mvn clean install
-mvn wildfly:deploy
+TODO Update
+```
+#Build local 
+docker build --tag shoot-rest-local . -f docker/rest-local/Dockerfile
 ```
 
-### Cliente Apps
+### OpenShift
+### Client Apps
 
 Upload an image using one of our Shoot and Share example app
 
