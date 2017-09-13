@@ -19,7 +19,6 @@ package org.jboss.aerogear.shoot.services;
 import org.jboss.aerogear.shoot.model.Photo;
 import org.jboss.aerogear.shoot.utils.Utils;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -36,13 +35,14 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
+import javax.enterprise.context.ApplicationScoped;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 /**
  * Photos Service
  */
-@Stateless
+@ApplicationScoped
 @Path("/photos")
 public class PhotoService {
 
