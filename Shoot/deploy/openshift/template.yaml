@@ -1,7 +1,7 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: Shoot_Demo_template
+  name: shoot-demo-template
   annotations:
     description: >-
       Shoot and Share is a demo of a Aerogear application using KeyCloak and WildFly Swarm.
@@ -128,13 +128,12 @@ objects:
         dockerfile: |
           FROM jboss/base-jdk:8
           ENV MAVEN_OPTS -Xmx768m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled
-          ENV MAVEN_VERSION 3.3.9
+          ENV MAVEN_VERSION 3.5.0
           ENV HOME /opt/jboss
           ENV M2_HOME /opt/jboss/tools/maven
           ENV PATH $JAVA_HOME/bin:$M2_HOME/bin:$PATH
-          USER root 
-          RUN yum -y install git maven && yum clean all -y
-          USER jboss
+          USER root
+          RUN yum -y install git wget && yum clean all -y
           WORKDIR /opt/jboss
           RUN mkdir tools && cd tools
           RUN mkdir -p $M2_HOME && cd $M2_HOME && curl http://mirror.nbtelecom.com.br/apache/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar zx --strip 1 -C $M2_HOME
@@ -142,14 +141,20 @@ objects:
           WORKDIR $HOME/aerogear-backend-cookbook/ 
           RUN cd $HOME/aerogear-backend-cookbook/ &&  git fetch origin AEROGEAR-1753:AEROGEAR-1753 && git checkout AEROGEAR-1753 
           WORKDIR $HOME/aerogear-backend-cookbook/Shoot
-          USER root
+          RUN /opt/jboss/tools/maven/bin/mvn -D user.home=$HOME package
           RUN chown -R jboss:0 $HOME
           RUN chmod -R g+rw $HOME
-          USER jboss
+          RUN chgrp -R 0 $HOME
+          RUN chmod -R g=u $HOME
+          RUN wget https://raw.githubusercontent.com/RHsyseng/container-rhel-examples/master/starter-arbitrary-uid/bin/uid_entrypoint
+          RUN mv uid_entrypoint /usr/bin/uid_entrypoint
+          RUN chmod +x /usr/bin/uid_entrypoint
+          USER 100001
           EXPOSE 8080
           EXPOSE 9990
           EXPOSE 8443
-          CMD ["/opt/jboss/tools/maven/bin/mvn", "wildfly-swarm:start"]          
+          ENTRYPOINT ["uid_entrypoint"]
+          CMD ["java", "-jar","target/shoot-swarm.jar"]   
       strategy:
         type: Docker
         dockerStrategy:

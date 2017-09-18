@@ -1,9 +1,9 @@
 FROM jboss/base-jdk:8
 
 ENV MAVEN_OPTS -Xmx768m -XX:+UseConcMarkSweepGC -XX:MaxPermSize=128m -XX:+CMSClassUnloadingEnabled
-ENV MAVEN_VERSION 3.3.9
+ENV MAVEN_VERSION 3.5.0
 ENV M2_HOME /opt/jboss/tools/maven
-
+ENV HOME /opt/jboss
 ENV PATH $JAVA_HOME/bin:$M2_HOME/bin:$PATH
 
 USER root 
