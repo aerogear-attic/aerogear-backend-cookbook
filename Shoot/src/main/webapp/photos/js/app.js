@@ -16,7 +16,7 @@ angular.element(document).ready(function ($http) {
     keycloakAuth.init({ onLoad: 'login-required' }).success(function () {
         auth.loggedIn = true;
         auth.authz = keycloakAuth;
-        auth.logoutUrl = keycloakAuth.authServerUrl + "/realms/shoot-realm/protocol/openid-connect/logout?redirect_uri=/shoot/photos/index.html";
+        auth.logoutUrl = keycloakAuth.authServerUrl + "/realms-realm/protocol/openid-connect/logout?redirect_uri=/photos/index.html";
         module.factory('Auth', function() {
             return auth;
         });
@@ -31,13 +31,13 @@ module.controller('GlobalCtrl', function($scope, $http) {
     $scope.photos = [];
     $scope.myInterval = 2000;
     $scope.reloadData = function() {
-        $http.get("/shoot/rest/photos").success(function(data) {
+        $http.get("/rest/photos").success(function(data) {
 
             var previousLength = $scope.photos.length
             var photosFromServer = angular.fromJson(data);
             for (var i = previousLength; i < data.length; i++) {
                 $scope.photos.push(photosFromServer[i]);
-                $http.get("/shoot/rest/photos/images/" + data[i].filename).success(function(binary) {
+                $http.get("/rest/photos/images/" + data[i].filename).success(function(binary) {
                     data[i-1].src = "data:image/jpeg;base64," + binary;
                 });
             }
@@ -46,10 +46,10 @@ module.controller('GlobalCtrl', function($scope, $http) {
     };
 
     $scope.reloadAllData = function() {
-        $http.get("/shoot/rest/photos").success(function(data) {
+        $http.get("/rest/photos").success(function(data) {
             $scope.photos = angular.fromJson(data);
             data.forEach(function(elt, index){
-                $http.get("/shoot/rest/photos/images/" + elt.filename ).success(function(data) {
+                $http.get("/rest/photos/images/" + elt.filename ).success(function(data) {
                     elt.src = "data:image/jpeg;base64," + data;
                 });
             })

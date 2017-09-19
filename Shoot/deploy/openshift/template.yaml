@@ -149,6 +149,7 @@ objects:
           RUN cd $HOME && mkdir -p aerogear-backend-cookbook/Shoot
           WORKDIR $HOME/aerogear-backend-cookbook/Shoot
           ADD ./ .
+          RUN /opt/jboss/tools/maven/bin/mvn -D user.home=$HOME package
           RUN chown -R jboss:0 $HOME
           RUN chmod -R g+rw $HOME
           RUN chgrp -R 0 $HOME
