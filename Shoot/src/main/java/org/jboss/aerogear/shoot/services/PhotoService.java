@@ -36,6 +36,7 @@ import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
@@ -100,6 +101,7 @@ public class PhotoService {
     }
 
     @POST
+    @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     public Response save(Photo photo) {
         em.persist(photo);
@@ -110,6 +112,7 @@ public class PhotoService {
     }
 
     @POST
+    @Transactional
     @Consumes("multipart/form-data")
     @Produces(MediaType.APPLICATION_JSON)
     public Photo upload(MultipartFormDataInput input) {
@@ -132,6 +135,7 @@ public class PhotoService {
 
     @PUT
     @Path("{id : \\d+}")
+    @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     public Response update(@PathParam("id") long id, Photo photo) {
         Photo existing = em.createNamedQuery("Photo.findByPrimaryKey", Photo.class)
@@ -150,6 +154,7 @@ public class PhotoService {
 
     @DELETE
     @Path("{id : \\d+}")
+    @Transactional
     public Response delete(@PathParam("id") long id) {
         Photo photo = em.createNamedQuery("Photo.findByPrimaryKey", Photo.class)
                 .setParameter("id", id)

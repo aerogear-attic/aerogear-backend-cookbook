@@ -57,11 +57,19 @@ parameters:
   - name: KEYCLOAK_URL
     displayName: Keycloak URL
     description: This is the url that will be the base route to the Keycloak server.
-    value: keycloak-shoot.127.0.0.1.nip.io
+    value: keycloak.127.0.0.1.nip.io
   - name: REST_URL
     displayName: Rest Server URL
     description: This is the url that will be the base route to the Rest server.
-    value: rest-shoot.127.0.0.1.nip.io
+    value: rest.127.0.0.1.nip.io
+  - name: KEYCLOAK_ANDROID_URL
+    displayName: Keycloak URL
+    description: This is the url that will be the base route to the Keycloak server.
+    value: keycloak.10.0.2.2.nip.io
+  - name: REST_ANDROID_URL
+    displayName: Rest Server URL
+    description: This is the url that will be the base route to the Rest server.
+    value: rest.10.0.2.2.nip.io
     
 objects:
   - kind: ImageStream
@@ -189,6 +197,32 @@ objects:
       port:
         targetPort: 8080-tcp
       wildcardPolicy: None      
+  - apiVersion: v1
+    kind: Route
+    metadata:
+      name: keycloak-android-unsecure
+    spec:
+      host: '${KEYCLOAK_ANDROID_URL}'
+      to:
+        kind: Service
+        name: keycloak-server
+        weight: 100
+      port:
+        targetPort: 8080-tcp
+      wildcardPolicy: None
+  - apiVersion: v1
+    kind: Route
+    metadata:
+      name: rest-android-unsecure
+    spec:
+      host: '${REST_ANDROID_URL}'
+      to:
+        kind: Service
+        name: rest-server
+        weight: 100
+      port:
+        targetPort: 8080-tcp
+      wildcardPolicy: None            
   - kind: Service
     apiVersion: v1
     metadata:
