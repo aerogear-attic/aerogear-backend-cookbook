@@ -54,7 +54,7 @@
         "name" : "shoot-web",
         "baseUrl" : "/shoot/index.html",
         "enabled" : true,
-        "redirectUris" : [ "/shoot/*" ],
+        "redirectUris" : [ "/photos/*","http://rest.127.0.0.1.nip.io/*","rest.127.0.0.1.nip.io/*" ],
         "publicClient" : true
     }],
     "oauthClients" : [ {

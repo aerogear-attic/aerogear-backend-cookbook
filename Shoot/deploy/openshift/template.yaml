@@ -57,7 +57,7 @@ parameters:
   - name: KEYCLOAK_URL
     displayName: Keycloak URL
     description: This is the url that will be the base route to the Keycloak server.
-    value: keycloak.127.0.0.1.nip.io
+    value: rest.127.0.0.1.nip.io
   - name: REST_URL
     displayName: Rest Server URL
     description: This is the url that will be the base route to the Rest server.
@@ -65,11 +65,12 @@ parameters:
   - name: KEYCLOAK_ANDROID_URL
     displayName: Keycloak URL
     description: This is the url that will be the base route to the Keycloak server.
-    value: keycloak.10.0.2.2.nip.io
+    value: rest.10.0.2.2.nip.io
   - name: REST_ANDROID_URL
     displayName: Rest Server URL
     description: This is the url that will be the base route to the Rest server.
     value: rest.10.0.2.2.nip.io
+    
     
 objects:
   - kind: ImageStream
@@ -132,7 +133,7 @@ objects:
         git:
           uri: 'https://github.com/secondsun/aerogear-backend-cookbook'
           ref: AEROGEAR-1753
-        contextDir: Shoot/deploy/docker/rest-github
+        contextDir: Shoot
         dockerfile: |
           FROM jboss/base-jdk:8
           ENV MAVEN_OPTS -Xmx768m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled
@@ -145,11 +146,9 @@ objects:
           WORKDIR /opt/jboss
           RUN mkdir tools && cd tools
           RUN mkdir -p $M2_HOME && cd $M2_HOME && curl http://mirror.nbtelecom.com.br/apache/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar zx --strip 1 -C $M2_HOME
-          RUN cd $HOME && git clone https://github.com/secondsun/aerogear-backend-cookbook  
-          WORKDIR $HOME/aerogear-backend-cookbook/ 
-          RUN cd $HOME/aerogear-backend-cookbook/ &&  git fetch origin AEROGEAR-1753:AEROGEAR-1753 && git checkout AEROGEAR-1753 
+          RUN cd $HOME && mkdir -p aerogear-backend-cookbook/Shoot
           WORKDIR $HOME/aerogear-backend-cookbook/Shoot
-          RUN /opt/jboss/tools/maven/bin/mvn -D user.home=$HOME package
+          ADD ./ .
           RUN chown -R jboss:0 $HOME
           RUN chmod -R g+rw $HOME
           RUN chgrp -R 0 $HOME
@@ -177,6 +176,7 @@ objects:
       name: keycloak-localhost-unsecure
     spec:
       host: '${KEYCLOAK_URL}'
+      path: /auth
       to:
         kind: Service
         name: keycloak-server
@@ -203,6 +203,7 @@ objects:
       name: keycloak-android-unsecure
     spec:
       host: '${KEYCLOAK_ANDROID_URL}'
+      path: /auth
       to:
         kind: Service
         name: keycloak-server
