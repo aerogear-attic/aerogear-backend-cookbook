@@ -9,6 +9,7 @@ A simple example to demo OAuth2 authorization code grant with [Keycloak](http://
 ### Local Docker
 
 TODO Update
+
 ```
 #Build local 
 docker build --tag shoot-rest-local . -f docker/rest-local/Dockerfile
