@@ -1,0 +1,471 @@
+kind: Template
+apiVersion: v1
+metadata:
+  name: shoot-demo-template
+  annotations:
+    description: >-
+      Shoot and Share is a demo of a Aerogear application using KeyCloak and WildFly Swarm.
+    tags: mobile
+    iconClass: icon-java
+parameters:
+  - name: NAMESPACE
+    displayName: Namespace
+    description: >-
+      The OpenShift Namespace where the ImageStream resides.  This will usually
+      be your project name
+    required: true
+  - name: DATABASE_SERVICE_NAME
+    displayName: Database Service Name
+    description: The name of the OpenShift Service exposed for the KeyCloak database.
+    value: shoot-keycloak-postgresql
+    required: true
+  - name: POSTGRESQL_USER
+    displayName: PostgreSQL Connection Username
+    description: Username for PostgreSQL user that will be used by KeyCloak for accessing the database.
+    generate: expression
+    from: 'user[A-Z0-9]{3}'
+    required: true
+  - name: POSTGRESQL_PASSWORD
+    displayName: PostgreSQL Connection Password
+    description: Password for the PostgreSQL connection user used by KeyCloak.
+    generate: expression
+    from: '[a-zA-Z0-9]{16}'
+    required: true
+  - name: POSTGRESQL_ROOT_PASSWORD
+    displayName: PostgreSQL Root Password
+    description: Password for the PostgreSQL root user used by KeyCloak.
+    generate: expression
+    from: '[a-zA-Z0-9]{16}'
+    required: true
+  - name: POSTGRESQL_DATABASE
+    displayName: PostgreSQL Database Name
+    description: Name of the PostgreSQL database accessed used by KeyCloak.
+    value: shootkeycloak
+    required: true
+  - name: VOLUME_CAPACITY
+    displayName: Volume Capacity
+    description: 'Volume space available for data, e.g. 512Mi, 2Gi.'
+    value: 1Gi
+    required: true
+  - name: POSTGRESQL_IMAGE
+    displayName: Name of PostgreSQL Image
+    description: >-
+      Name of PostgreSQL image to be used (centos/postgresql-94-centos7 or
+      centos/postgresql-92-centos7, or centos/postgresql-95-centos7).
+    value: centos/postgresql-95-centos7
+    required: true
+  - name: KEYCLOAK_URL
+    displayName: Keycloak URL
+    description: This is the url that will be the base route to the Keycloak server.
+    value: rest.127.0.0.1.nip.io
+  - name: REST_URL
+    displayName: Rest Server URL
+    description: This is the url that will be the base route to the Rest server.
+    value: rest.127.0.0.1.nip.io
+  - name: KEYCLOAK_ANDROID_URL
+    displayName: Keycloak URL
+    description: This is the url that will be the base route to the Keycloak server.
+    value: rest.10.0.2.2.nip.io
+  - name: REST_ANDROID_URL
+    displayName: Rest Server URL
+    description: This is the url that will be the base route to the Rest server.
+    value: rest.10.0.2.2.nip.io
+    
+    
+objects:
+  - kind: ImageStream
+    apiVersion: v1
+    metadata:
+      name: keycloak-shoot-configured
+      namespace: '${NAMESPACE}'
+  - apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      name: keycloak-shoot-configured
+    spec:
+      triggers:
+        - type: ConfigChange
+      source:
+        type: Git
+        git:
+          uri: 'https://github.com/secondsun/aerogear-backend-cookbook'
+          ref: AEROGEAR-1753
+        contextDir: Shoot/deploy/docker/keycloak
+        dockerfile: |
+          FROM fedora:26
+          RUN dnf install -y java wget
+          RUN wget  https://downloads.jboss.org/keycloak/3.2.1.Final/keycloak-3.2.1.Final.tar.gz
+          RUN tar -zvxf keycloak-3.2.1.Final.tar.gz
+          ADD configuration/realm.json /keycloak-3.2.1.Final/bin
+          EXPOSE 8080
+          EXPOSE 9990
+          EXPOSE 8443
+          RUN useradd jboss
+          RUN mkdir -p /keycloak-3.2.1.Final/standalone/log
+          RUN mkdir -p /keycloak-3.2.1.Final/standalone/data
+          RUN chown -R jboss:0 /keycloak-3.2.1.Final/standalone
+          RUN chmod -R g+rw /keycloak-3.2.1.Final/standalone
+          USER jboss
+          WORKDIR /keycloak-3.2.1.Final/bin
+          CMD ["./standalone.sh", "-b=0.0.0.0", "-Dkeycloak.migration.action=import", "-Dkeycloak.migration.provider=singleFile",  "-Dkeycloak.migration.file=realm.json", "-Dkeycloak.migration.strategy=IGNORE_EXISTING"]
+      strategy:
+        type: Docker
+        dockerStrategy:
+          dockerfilePath: ''
+      output:
+        to:
+          kind: ImageStreamTag
+          name: 'keycloak-shoot-configured:latest'
+  - kind: ImageStream
+    apiVersion: v1
+    metadata:
+      name: rest-shoot-configured
+      namespace: '${NAMESPACE}'
+  - apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      name: rest-shoot-configured
+    spec:
+      triggers:
+        - type: ConfigChange
+      source:
+        type: Git
+        git:
+          uri: 'https://github.com/secondsun/aerogear-backend-cookbook'
+          ref: AEROGEAR-1753
+        contextDir: Shoot
+        dockerfile: |
+          FROM jboss/base-jdk:8
+          ENV MAVEN_OPTS -Xmx768m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled
+          ENV MAVEN_VERSION 3.5.0
+          ENV HOME /opt/jboss
+          ENV M2_HOME /opt/jboss/tools/maven
+          ENV PATH $JAVA_HOME/bin:$M2_HOME/bin:$PATH
+          USER root
+          RUN yum -y install git wget && yum clean all -y
+          WORKDIR /opt/jboss
+          RUN mkdir tools && cd tools
+          RUN mkdir -p $M2_HOME && cd $M2_HOME && curl http://mirror.nbtelecom.com.br/apache/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar zx --strip 1 -C $M2_HOME
+          RUN cd $HOME && mkdir -p aerogear-backend-cookbook/Shoot
+          WORKDIR $HOME/aerogear-backend-cookbook/Shoot
+          ADD ./ .
+          RUN /opt/jboss/tools/maven/bin/mvn -D user.home=$HOME package
+          RUN chown -R jboss:0 $HOME
+          RUN chmod -R g+rw $HOME
+          RUN chgrp -R 0 $HOME
+          RUN chmod -R g=u $HOME
+          RUN wget https://raw.githubusercontent.com/RHsyseng/container-rhel-examples/master/starter-arbitrary-uid/bin/uid_entrypoint
+          RUN mv uid_entrypoint /usr/bin/uid_entrypoint
+          RUN chmod +x /usr/bin/uid_entrypoint
+          USER 100001
+          EXPOSE 8080
+          EXPOSE 9990
+          EXPOSE 8443
+          ENTRYPOINT ["uid_entrypoint"]
+          CMD ["java", "-jar","target/shoot-swarm.jar"]   
+      strategy:
+        type: Docker
+        dockerStrategy:
+          dockerfilePath: ''
+      output:
+        to:
+          kind: ImageStreamTag
+          name: 'rest-shoot-configured:latest'          
+  - apiVersion: v1
+    kind: Route
+    metadata:
+      name: keycloak-localhost-unsecure
+    spec:
+      host: '${KEYCLOAK_URL}'
+      path: /auth
+      to:
+        kind: Service
+        name: keycloak-server
+        weight: 100
+      port:
+        targetPort: 8080-tcp
+      wildcardPolicy: None
+  - apiVersion: v1
+    kind: Route
+    metadata:
+      name: rest-localhost-unsecure
+    spec:
+      host: '${REST_URL}'
+      to:
+        kind: Service
+        name: rest-server
+        weight: 100
+      port:
+        targetPort: 8080-tcp
+      wildcardPolicy: None      
+  - apiVersion: v1
+    kind: Route
+    metadata:
+      name: keycloak-android-unsecure
+    spec:
+      host: '${KEYCLOAK_ANDROID_URL}'
+      path: /auth
+      to:
+        kind: Service
+        name: keycloak-server
+        weight: 100
+      port:
+        targetPort: 8080-tcp
+      wildcardPolicy: None
+  - apiVersion: v1
+    kind: Route
+    metadata:
+      name: rest-android-unsecure
+    spec:
+      host: '${REST_ANDROID_URL}'
+      to:
+        kind: Service
+        name: rest-server
+        weight: 100
+      port:
+        targetPort: 8080-tcp
+      wildcardPolicy: None            
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      name: keycloak-server
+    spec:
+      ports:
+        - name: 8080-tcp
+          protocol: TCP
+          port: 8080
+          targetPort: 8080
+        - name: 8443-tcp
+          protocol: TCP
+          port: 8443
+          targetPort: 8443
+      selector:
+        deploymentconfig: keycloak-server
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      name: rest-server
+    spec:
+      ports:
+        - name: 8080-tcp
+          protocol: TCP
+          port: 8080
+          targetPort: 8080
+        - name: 8443-tcp
+          protocol: TCP
+          port: 8443
+          targetPort: 8443
+      selector:
+        deploymentconfig: rest-server        
+  - kind: DeploymentConfig
+    apiVersion: v1
+    metadata:
+      name: keycloak-server
+    spec:
+      triggers:
+        - type: ConfigChange
+        - type: ImageChange
+          imageChangeParams:
+            automatic: true
+            containerNames:
+              - keycloak-server
+            from:
+              kind: ImageStreamTag
+              namespace: '${NAMESPACE}'
+              name: 'keycloak-shoot-configured:latest'
+      replicas: 1
+      test: false
+      selector:
+        app: keycloak-server
+        deploymentconfig: keycloak-server
+      template:
+        metadata:
+          labels:
+            app: keycloak-server
+            deploymentconfig: keycloak-server
+        spec:
+          containers:
+            - name: keycloak-server
+              image: '${NAMESPACE}/keycloak-shoot-configured:latest'
+              ports:
+                - name: 8080-tcp
+                  containerPort: 8080
+                  protocol: TCP
+                - name: 8443-tcp
+                  containerPort: 8443
+                  protocol: TCP
+              readinessProbe:
+                timeoutSeconds: 1
+                initialDelaySeconds: 90
+                exec:
+                  command:
+                    - /bin/sh
+                    - '-i'
+                    - '-c'
+                    - 'curl localhost:8080/auth'
+              env:
+                - name: POSTGRES_PORT_5432_TCP_ADDR
+                  value: postgresql
+                - name: POSTGRES_PORT_5432_TCP_PORT
+                  value: '5432'
+                - name: POSTGRES_DATABASE
+                  value: '${POSTGRESQL_DATABASE}'
+                - name: POSTGRES_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: '${DATABASE_SERVICE_NAME}'
+                      key: database-user
+                - name: POSTGRES_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: '${DATABASE_SERVICE_NAME}'
+                      key: database-password
+              resources: {}
+  - kind: DeploymentConfig
+    apiVersion: v1
+    metadata:
+      name: rest-server
+    spec:
+      triggers:
+        - type: ConfigChange
+        - type: ImageChange
+          imageChangeParams:
+            automatic: true
+            containerNames:
+              - rest-server
+            from:
+              kind: ImageStreamTag
+              namespace: '${NAMESPACE}'
+              name: 'rest-shoot-configured:latest'
+      replicas: 1
+      test: false
+      selector:
+        app: rest-server
+        deploymentconfig: rest-server
+      template:
+        metadata:
+          labels:
+            app: rest-server
+            deploymentconfig: rest-server
+        spec:
+          containers:
+            - name: rest-server
+              image: '${NAMESPACE}/rest-shoot-configured:latest'
+              ports:
+                - name: 8080-tcp
+                  containerPort: 8080
+                  protocol: TCP
+                - name: 8443-tcp
+                  containerPort: 8443
+                  protocol: TCP
+              readinessProbe:
+                timeoutSeconds: 1
+                initialDelaySeconds: 90
+                exec:
+                  command:
+                    - /bin/sh
+                    - '-i'
+                    - '-c'
+                    - 'curl localhost:8080/'
+              env:
+                - name: KEYCLOAK_PORT_8080_TCP_ADDR
+                  value: keycloak-server
+                - name: KEYCLOAK_PORT_8080_TCP_ADDR
+                  value: '8080'                  
+              resources: {}
+              
+  - kind: Secret
+    apiVersion: v1
+    metadata:
+      name: '${DATABASE_SERVICE_NAME}'
+    stringData:
+      database-user: '${POSTGRESQL_USER}'
+      database-password: '${POSTGRESQL_PASSWORD}'
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      name: '${DATABASE_SERVICE_NAME}'
+    spec:
+      ports:
+        - name: postgres
+          port: 5432
+      selector:
+        name: '${DATABASE_SERVICE_NAME}'
+  - kind: PersistentVolumeClaim
+    apiVersion: v1
+    metadata:
+      name: '${DATABASE_SERVICE_NAME}-vc'
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: '${VOLUME_CAPACITY}'
+  - kind: DeploymentConfig
+    apiVersion: v1
+    metadata:
+      name: '${DATABASE_SERVICE_NAME}'
+    spec:
+      strategy:
+        type: Recreate
+      triggers:
+        - type: ConfigChange
+      replicas: 1
+      selector:
+        name: '${DATABASE_SERVICE_NAME}'
+      template:
+        metadata:
+          labels:
+            name: '${DATABASE_SERVICE_NAME}'
+        spec:
+          containers:
+            - name: postgresql
+              image: '${POSTGRESQL_IMAGE}'
+              ports:
+                - containerPort: 5432
+                  protocol: TCP
+              readinessProbe:
+                timeoutSeconds: 1
+                initialDelaySeconds: 5
+                exec:
+                  command:
+                    - /bin/sh
+                    - '-i'
+                    - '-c'
+                    - >-
+                      psql -h 127.0.0.1 -U $POSTGRESQL_USER -q -d
+                      $POSTGRESQL_DATABASE -c 'SELECT 1'
+              livenessProbe:
+                timeoutSeconds: 1
+                initialDelaySeconds: 30
+                tcpSocket:
+                  port: 5432
+              env:
+                - name: POSTGRESQL_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: '${DATABASE_SERVICE_NAME}'
+                      key: database-user
+                - name: POSTGRESQL_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: '${DATABASE_SERVICE_NAME}'
+                      key: database-password
+                - name: POSTGRESQL_DATABASE
+                  value: '${POSTGRESQL_DATABASE}'
+              resources:
+                limits:
+                  memory: '512Mi'
+              volumeMounts:
+                - name: '${DATABASE_SERVICE_NAME}-data'
+                  mountPath: /var/lib/pgsql/data
+              terminationMessagePath: /dev/termination-log
+              imagePullPolicy: IfNotPresent
+              capabilities: {}
+              securityContext:
+                capabilities: {}
+                privileged: false
+          volumes:
+            - name: '${DATABASE_SERVICE_NAME}-data'
+              persistentVolumeClaim:
+                claimName: '${DATABASE_SERVICE_NAME}-vc'
