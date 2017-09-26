@@ -16,18 +16,41 @@ docker build --tag shoot-rest-local . -f docker/rest-local/Dockerfile
 ```
 
 ### OpenShift
+
+#### Create a new project
+
+```bash
+oc new-project shoot-and-share
+```
+
+PS: You can use whatever project name you like
+
+#### Import template
+
+```bash
+oc create -f https://raw.githubusercontent.com/aerogear/aerogear-backend-cookbook/master/Shoot/deploy/openshift/template.yaml
+```
+#### Add to project
+
+1. Go to [project overview](https://127.0.0.1:8443/console/project/shoot-and-share/overview)
+1. Click on the _Add to project_ button
+1. Select the _Uncategorized_
+1. Select _shoot-demo-template_
+1. Fill in the _Namespace_ with "shoot-and-share"
+1. Clik in _create_ button
+
+
 ### Client Apps
 
 Upload an image using one of our Shoot and Share example app
-
 
 * [Android](https://github.com/aerogear/aerogear-android-cookbook/tree/master/ShootAndShare)
 * [iOS](https://github.com/aerogear/aerogear-ios-cookbook/tree/master/Shoot)
 * [Cordova](https://github.com/aerogear/aerogear-cordova-cookbook/tree/master/Shoot)
 
-### We app flow
+### The app flow
 
-1. Go to [http://localhost:8080/shoot/photos/](http://localhost:8080/shoot/photos/)
+1. Go to [http://localhost:8080/shoot/photos/](http://localhost:8080/shoot/photos/) or [http://rest.127.0.0.1.nip.io](http://rest.127.0.0.1.nip.io/photos) (if you are using openshift)
 1. Login using _user_ / _password_
 1. See the picutres uploaded
 
