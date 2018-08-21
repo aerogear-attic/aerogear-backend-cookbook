@@ -18,6 +18,14 @@ parameters:
     displayName: Database Service Name
     description: The name of the OpenShift Service exposed for the KeyCloak database.
     value: shoot-keycloak-postgresql
+  - name: GIT_BRANCH
+    displayName: Git Branch
+    description: The branch to checkout when building Shoot N' Share.
+    value: master
+  - name: GITHUB_URL
+    displayName: Github URL
+    description: The URL for the Github hosted repository of aerogear-backend-cookbook.
+    value: https://github.com/aerogear/aerogear-backend-cookbook        
     required: true
   - name: POSTGRESQL_USER
     displayName: PostgreSQL Connection Username
@@ -88,8 +96,8 @@ objects:
       source:
         type: Git
         git:
-          uri: 'https://github.com/secondsun/aerogear-backend-cookbook'
-          ref: AEROGEAR-1753
+          uri: '${GITHUB_URL}'
+          ref: ${GIT_BRANCH}
         contextDir: Shoot/deploy/docker/keycloak
         dockerfile: |
           FROM fedora:26
@@ -131,8 +139,8 @@ objects:
       source:
         type: Git
         git:
-          uri: 'https://github.com/secondsun/aerogear-backend-cookbook'
-          ref: AEROGEAR-1753
+          uri: '${GITHUB_URL}'
+          ref: ${GIT_BRANCH}
         contextDir: Shoot
         dockerfile: |
           FROM jboss/base-jdk:8
@@ -162,7 +170,7 @@ objects:
           EXPOSE 9990
           EXPOSE 8443
           ENTRYPOINT ["uid_entrypoint"]
-          CMD ["java", "-jar","target/shoot-swarm.jar"]   
+          CMD ["java", "-jar","target/shoot-swarm.jar", "-Djava.net.preferIPv4Stack=true", "-Djava.net.preferIPv4Addresses=true"]   
       strategy:
         type: Docker
         dockerStrategy:
